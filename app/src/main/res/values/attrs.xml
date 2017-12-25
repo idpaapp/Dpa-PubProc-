@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="IconedLabelView">
+        <attr name="TitleText" format="string"/>
+        <attr name="Icon" format="reference"/>
+        <attr name="TextSize" format="integer"/>
+        <attr name="TextColor" format="color"/>
+        <attr name="IconColor" format="color"/>
+        <attr name="HasIconColor" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="MyRadioGroup">
+        <attr name="caption" format="string"/>
+        <attr name="textSize" format="integer"/>
+        <attr name="textColor" format="color"/>
+        <attr name="captionColor" format="color"/>
+        <attr name="radioCount" format="integer"/>
+        <attr name="hasCaption" format="boolean"/>
+        <attr name="groupBackground" format="reference"/>
+        <attr name="groupOrientation" format="integer">
+            <flag name="horizontal" value="0"/>
+            <flag name="vertical" value="1"/>
+        </attr>
+        <attr name="captionPostion" format="integer">
+            <flag name="inside" value="0"/>
+            <flag name="outside" value="1"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="MyCheckBox">
+        <attr name="txtcaption" format="string"/>
+        <attr name="txttextSize" format="integer"/>
+        <attr name="txttextColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="ShadowTextView">
+        <attr name="stxtcaption" format="string"/>
+        <attr name="stxttextSize" format="integer"/>
+        <attr name="stxttextColor" format="color"/>
+        <attr name="stxtshadowColor" format="color"/>
+        <attr name="shadowDx" format="float"/>
+        <attr name="shadowDy" format="float"/>
+    </declare-styleable>
+</resources>

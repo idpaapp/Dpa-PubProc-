@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:float="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/grpMainLayout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Label"
+        android:layout_gravity="right"
+        android:textColor="@color/primary"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_margin="5sp"
+        android:gravity="center_vertical"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <dpa_me.com.dpa_pubproc.CustomViews.MyRadioButton
+            android:id="@+id/rb9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_weight="1"/>
+
+        <dpa_me.com.dpa_pubproc.CustomViews.MyRadioButton
+            android:id="@+id/rb8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_weight="1"/>
+
+        <dpa_me.com.dpa_pubproc.CustomViews.MyRadioButton
+            android:id="@+id/rb7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_weight="1"/>
+
+        <dpa_me.com.dpa_pubproc.CustomViews.MyRadioButton
+            android:id="@+id/rb6"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <dpa_me.com.dpa_pubproc.CustomViews.MyRadioButton
+            android:id="@+id/rb5"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <dpa_me.com.dpa_pubproc.CustomViews.MyRadioButton
+            android:id="@+id/rb4"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <dpa_me.com.dpa_pubproc.CustomViews.MyRadioButton
+            android:id="@+id/rb3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <dpa_me.com.dpa_pubproc.CustomViews.MyRadioButton
+            android:id="@+id/rb2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <dpa_me.com.dpa_pubproc.CustomViews.MyRadioButton
+            android:id="@+id/rb1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    </RadioGroup>
+
+</LinearLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/border_gray"/>
+    <item android:drawable="@drawable/inner"
+        android:top="1sp"
+        android:right="1sp"
+        android:bottom="1sp"
+        android:left="1sp" />
+</layer-list>

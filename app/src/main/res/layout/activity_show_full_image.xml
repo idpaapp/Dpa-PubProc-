@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/suMainMenuLyout"
+        android:background="@color/primary_dark">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Title"
+            android:textColor="@color/icons"
+            android:textSize="14sp"
+            android:text="@string/lblTitle"
+            android:layout_alignTop="@+id/BackBtn"
+            android:layout_alignBottom="@+id/BackBtn"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:gravity="center"/>
+
+        <ImageView
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:id="@+id/BackBtn"
+            android:src="@drawable/backbtn"
+            android:layout_alignParentEnd="false"
+            android:scaleType="fitCenter"
+            android:layout_marginRight="5sp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="8sp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/divider"
+        android:scaleType="fitCenter"
+        android:id="@+id/sfiImage"/>
+</LinearLayout>

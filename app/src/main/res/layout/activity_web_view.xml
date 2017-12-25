@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:wheel="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/MainLayout"
+    android:background="@color/divider">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:id="@+id/mcMenuLayout"
+        android:background="@color/primary">
+
+        <ImageView
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:id="@+id/BackBtn"
+            android:src="@drawable/backbtn"
+            android:layout_alignParentEnd="false"
+            android:scaleType="fitCenter"
+            android:layout_marginRight="5sp"
+            android:tint="@color/icons"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="10sp" />
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/icons"
+            android:textSize="14sp"
+            android:layout_marginRight="40sp"
+            android:layout_marginLeft="40sp"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+    </RelativeLayout>
+
+    <WebView
+        android:id="@+id/mWebView"
+        android:layout_below="@+id/mcMenuLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </WebView>
+
+    <RelativeLayout
+        android:id="@+id/ProgressLayout"
+        android:layout_below="@+id/mcMenuLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary_light">
+
+        <com.pnikosis.materialishprogress.ProgressWheel
+            android:layout_centerInParent="true"
+            android:id="@+id/mProgressWheel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            wheel:matProg_circleRadius="90sp"
+            wheel:matProg_barColor="@color/primary"
+            wheel:matProg_rimWidth="1sp"
+            wheel:matProg_progressIndeterminate="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/messPleaseWait"
+            android:textColor="@color/icons"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

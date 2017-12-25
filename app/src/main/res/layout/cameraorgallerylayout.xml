@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/divider_light"
+    android:padding="5sp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="200sp"
+        android:layout_height="30sp"
+        android:layout_marginBottom="5sp"
+        android:layout_gravity="right"
+        android:background="@color/primary_dark"
+        android:textColor="@color/icons"
+        android:textSize="14sp"
+        android:text="@string/txtChoosePic"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:id="@+id/imgTakeCam"
+        android:layout_marginBottom="2sp"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="match_parent"
+            android:text="@string/camera"
+            android:textColor="@color/primary_text"
+            android:textSize="14sp"
+            android:gravity="right|center_vertical"
+            android:layout_marginRight="10sp"/>
+
+        <ImageView
+            android:layout_width="35sp"
+            android:layout_height="35sp"
+            android:padding="5sp"
+            android:src="@drawable/camblack"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="200sp"
+        android:layout_height="1sp"
+        android:layout_gravity="right"
+        android:background="@color/divider_light"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:id="@+id/imgTakeGallery"
+        android:layout_marginTop="5sp"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="match_parent"
+            android:text="@string/lblGallry"
+            android:textColor="@color/primary_text"
+            android:textSize="14sp"
+            android:gravity="right|center_vertical"
+            android:layout_marginRight="10sp"/>
+
+        <ImageView
+            android:layout_width="35sp"
+            android:layout_height="35sp"
+            android:padding="5sp"
+            android:src="@drawable/galleryblack"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/imgTakeTrash"
+        android:visibility="gone"
+        android:layout_gravity="right">
+        <View
+            android:layout_width="200sp"
+            android:layout_height="1sp"
+            android:layout_gravity="right"
+            android:background="@color/divider_light"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_marginTop="5sp"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="150sp"
+                android:layout_height="match_parent"
+                android:text="@string/lblDelete"
+                android:textColor="@color/primary_text"
+                android:textSize="14sp"
+                android:gravity="right|center_vertical"
+                android:layout_marginRight="10sp"/>
+
+            <ImageView
+                android:layout_width="35sp"
+                android:layout_height="35sp"
+                android:padding="5sp"
+                android:src="@drawable/trashblack"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
