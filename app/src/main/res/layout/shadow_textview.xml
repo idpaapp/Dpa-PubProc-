@@ -6,21 +6,20 @@
 
     <TextView
         android:id="@+id/textView_shadow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/accent"
+        android:gravity="center"
         android:text="salam"
-        android:textColor="@color/divider"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignTop="@+id/textView"
-        android:layout_marginTop="0.5sp"
-        android:layout_marginLeft="0.5sp"
-        android:gravity="center_vertical|right"/>
+        android:textSize="50sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="salam"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:textColor="@color/primary_text"
-        android:gravity="center_vertical|right"/>
+        android:textSize="50sp"
+        android:text="salam"
+        android:gravity="center"/>
 </RelativeLayout>

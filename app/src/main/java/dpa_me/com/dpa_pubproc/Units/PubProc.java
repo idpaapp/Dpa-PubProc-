@@ -9,6 +9,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -28,6 +29,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.StrictMode;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -1340,6 +1342,18 @@ public class PubProc {
 	}
 
 	public static class HandleApplication {
+		public static void SavePreferences(Context mcContext, String key, String value){
+			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mcContext);
+			SharedPreferences.Editor editor = preferences.edit();
+			editor.putString(key,value);
+			editor.apply();
+		}
+
+		public static String LoadPreferences(Context mcContext, String key){
+			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mcContext);
+			return preferences.getString(key, "");
+		}
+
 		public static String CreateRandomNumber(){
 			Random r = new Random();
 			int randnum = r.nextInt(99999 - 10000) + 10000;
@@ -1373,12 +1387,8 @@ public class PubProc {
 			int permission = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
 			int permission3 = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.ACCESS_FINE_LOCATION);
 
-			if (permission == PackageManager.PERMISSION_GRANTED
-					&& permission3 == PackageManager.PERMISSION_GRANTED) {
-				return true;
-			} else {
-				return false;
-			}
+            return permission == PackageManager.PERMISSION_GRANTED
+                    && permission3 == PackageManager.PERMISSION_GRANTED;
 		}
 
 		public static Snackbar makeText(Context context, String message, int duration) {
@@ -1419,7 +1429,7 @@ public class PubProc {
 			e.printStackTrace();
 
 			Intent intent = new Intent();
-			intent.setAction("com.dpa_me.restook.SEND_LOG");
+			intent.setAction("com.dpa_me.salona.SEND_LOG");
 			intent.putExtra("Error", e.toString());
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			a.startActivity(intent);

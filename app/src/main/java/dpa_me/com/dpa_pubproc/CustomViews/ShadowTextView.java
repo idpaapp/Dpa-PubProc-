@@ -32,8 +32,8 @@ public class ShadowTextView extends FrameLayout {
 
     private void init(AttributeSet attrs) {
         final View view = inflate(getContext(), R.layout.shadow_textview, null);
-        textView = (TextView) view.findViewById(R.id.textView);
-        textView_shadow = (TextView) view.findViewById(R.id.textView_shadow);
+        textView = view.findViewById(R.id.textView);
+        textView_shadow = view.findViewById(R.id.textView_shadow);
 
         if (attrs != null) {
             TypedArray attributes = getContext().obtainStyledAttributes(attrs, R.styleable.ShadowTextView);
@@ -46,8 +46,8 @@ public class ShadowTextView extends FrameLayout {
             textView_shadow.setTextColor(attributes.getColor(R.styleable.ShadowTextView_stxtshadowColor,
                     getResources().getColor(R.color.divider)));
 
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, attributes.getInt(R.styleable.ShadowTextView_stxttextSize, 14));
-            textView_shadow.setTextSize(TypedValue.COMPLEX_UNIT_SP, attributes.getInt(R.styleable.ShadowTextView_stxttextSize, 14));
+            textView.setTextSize(attributes.getDimensionPixelSize(R.styleable.ShadowTextView_stxttextSize, 14));
+            textView_shadow.setTextSize(attributes.getDimensionPixelSize(R.styleable.ShadowTextView_stxttextSize, 14));
 
             int leftMargin = (int) TypedValue.applyDimension(
                     TypedValue.COMPLEX_UNIT_SP,

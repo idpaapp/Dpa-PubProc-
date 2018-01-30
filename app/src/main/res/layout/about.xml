@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#616161"
-    android:paddingBottom="55sp">
+    android:background="#616161">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -44,4 +43,11 @@
         android:textColor="@color/TextColorLight"
         android:textSize="30sp"
         android:padding="10sp"/>
+
+    <ImageView
+        android:layout_below="@+id/abmMenuLayout"
+        android:id="@+id/backImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"/>
 </RelativeLayout>

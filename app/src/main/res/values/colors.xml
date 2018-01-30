@@ -21,6 +21,8 @@
     <color name="AlertColor">#e34220</color>
     <color name="Transwhite">#99ffffff</color>
     <color name="RadioTintColor">#FF4081</color>
+    <color name="BackNavColor">#334353</color>
+    <color name="BackNavColorSelected">#637688</color>
 
     <color name="TextColorLight">#ffffff</color>
     <color name="TextColorMediumLight">#887e7e7e</color>

@@ -35,10 +35,41 @@
 
     <declare-styleable name="ShadowTextView">
         <attr name="stxtcaption" format="string"/>
-        <attr name="stxttextSize" format="integer"/>
+        <attr name="stxttextSize" format="dimension"/>
         <attr name="stxttextColor" format="color"/>
         <attr name="stxtshadowColor" format="color"/>
         <attr name="shadowDx" format="float"/>
         <attr name="shadowDy" format="float"/>
     </declare-styleable>
+
+    <declare-styleable name="StrokeTextView">
+        <attr name="stCaption" format="string"/>
+        <attr name="stTextSize" format="dimension"/>
+        <attr name="stTextColor" format="color"/>
+        <attr name="stStrokeColor" format="color"/>
+        <attr name="stStorkWidth" format="float"/>
+        <attr name="stBackground" format="reference"/>
+        <attr name="stTopMargin" format="dimension"/>
+        <attr name="stBottomMargin" format="dimension"/>
+        <attr name="stLeftMargin" format="dimension"/>
+        <attr name="stRightMargin" format="dimension"/>
+        <attr name="stxOffset" format="float"/>
+        <attr name="styOffset" format="float"/>
+        <attr name="stxPivote" format="float"/>
+        <attr name="styPivote" format="float"/>
+        <attr name="scaleType" format="integer">
+            <flag name="center" value="0"/>
+            <flag name="fitCenter" value="1"/>
+        </attr>
+
+    </declare-styleable>
+
+    <declare-styleable name="PushImageView">
+        <attr name="xOffset" format="float"/>
+        <attr name="yOffset" format="float"/>
+        <attr name="xPivote" format="float"/>
+        <attr name="yPivote" format="float"/>
+    </declare-styleable>
+
+
 </resources>

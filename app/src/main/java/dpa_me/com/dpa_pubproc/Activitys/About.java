@@ -12,6 +12,15 @@ import dpa_me.com.dpa_pubproc.Units.PubProc;
 
 public class About extends Fragment {
     ImageView MenuButton;
+    int ImageResource;
+
+    public About(){
+        ImageResource = 0;
+    }
+
+    public About(int imageResource){
+        ImageResource = imageResource;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -20,7 +29,7 @@ public class About extends Fragment {
 
         PubProc.mFragmentManager = getChildFragmentManager();
 
-        MenuButton = (ImageView) view.findViewById(R.id.MenuButton);
+        MenuButton = view.findViewById(R.id.MenuButton);
         if (MenuButton != null) {
             MenuButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -30,6 +39,10 @@ public class About extends Fragment {
             });
         }
 
+        if (ImageResource != 0) {
+            ((ImageView) view.findViewById(R.id.backImage)).setImageResource(ImageResource);
+            view.findViewById(R.id.abmMenuLayout).setVisibility(View.GONE);
+        }
         return view;
     }
 }
