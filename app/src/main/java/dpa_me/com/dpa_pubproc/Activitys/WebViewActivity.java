@@ -23,7 +23,6 @@ public class WebViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             mLink = bundle.getString("mLink");
@@ -31,7 +30,7 @@ public class WebViewActivity extends AppCompatActivity {
         }
 
         mContext = PubProc.HandleApplication.SetActivityParams(this, R.layout.activity_web_view, false, mTitle);
-        PubProc.HandleViewAndFontSize.overrideFonts(mContext, findViewById(R.id.MainLayout));
+
         mWebView = findViewById(R.id.mWebView);
         ProgressLayout = findViewById(R.id.ProgressLayout);
 
@@ -51,4 +50,5 @@ public class WebViewActivity extends AppCompatActivity {
 
         mWebView.loadUrl(mLink);
     }
+
 }

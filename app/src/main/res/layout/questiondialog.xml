@@ -69,6 +69,12 @@
 
     </RelativeLayout>
 
+    <View
+        android:id="@+id/btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
     <ImageView
         android:id="@+id/Logo"
         android:layout_width="50sp"

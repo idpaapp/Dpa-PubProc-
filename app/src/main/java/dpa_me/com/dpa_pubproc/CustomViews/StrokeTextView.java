@@ -69,6 +69,10 @@ public class StrokeTextView extends FrameLayout {
                 attributes.getColor(R.styleable.StrokeTextView_stStrokeColor,getResources().getColor(R.color.primary_text))));
     }
 
+    public void setStBackground(int resourceid){
+        back_layout.setBackgroundResource(resourceid);
+    }
+
     public String getText(){
         return mText;
     }
@@ -93,12 +97,23 @@ public class StrokeTextView extends FrameLayout {
 
             mText = attributes.getString(R.styleable.StrokeTextView_stCaption);
 
-            if (attributes.getInt(R.styleable.StrokeTextView_scaleType, 0) == 1) {
-                mainText.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                strokeText.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            }else {
-                mainText.setScaleType(ImageView.ScaleType.CENTER);
-                strokeText.setScaleType(ImageView.ScaleType.CENTER);
+            switch (attributes.getInt(R.styleable.StrokeTextView_scaleType, 0)){
+                case 0:
+                    mainText.setScaleType(ImageView.ScaleType.CENTER);
+                    strokeText.setScaleType(ImageView.ScaleType.CENTER);
+                    break;
+                case 1:
+                    mainText.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                    strokeText.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                    break;
+                case 2:
+                    mainText.setScaleType(ImageView.ScaleType.FIT_END);
+                    strokeText.setScaleType(ImageView.ScaleType.FIT_END);
+                    break;
+                case 3:
+                    mainText.setScaleType(ImageView.ScaleType.FIT_START);
+                    strokeText.setScaleType(ImageView.ScaleType.FIT_START);
+                    break;
             }
 
             bottomMargin = attributes.getDimensionPixelSize(R.styleable.StrokeTextView_stBottomMargin, 0);
@@ -149,6 +164,22 @@ public class StrokeTextView extends FrameLayout {
                                     Animation.RELATIVE_TO_SELF, yPivote);
                             anim.setFillAfter(true);
                             anim.setDuration(300);
+                            anim.setAnimationListener(new Animation.AnimationListener() {
+                                @Override
+                                public void onAnimationStart(Animation animation) {
+
+                                }
+
+                                @Override
+                                public void onAnimationEnd(Animation animation) {
+                                    clearAnimation();
+                                }
+
+                                @Override
+                                public void onAnimationRepeat(Animation animation) {
+
+                                }
+                            });
                             v.startAnimation(anim);
                             callOnClick();
                             break;

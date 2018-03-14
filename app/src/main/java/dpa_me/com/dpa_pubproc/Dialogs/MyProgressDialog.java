@@ -34,37 +34,37 @@ public class MyProgressDialog extends Dialog {
         setContentView(R.layout.progressdialog);
         getWindow().setBackgroundDrawableResource(R.color.TransBackColor);
 
+        pbProgress = findViewById(R.id.pbProgress);
+        if (pbProgress != null) {
+            pbProgress.setTag("1");
+            pbProgress.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if (v.getTag().toString().equals("1"))
+                        v.setTag("2");
+                    return false;
+                }
+            });
 
-        pbProgress = (ProgressWheel) findViewById(R.id.pbProgress);
-        pbProgress.setTag("1");
-        pbProgress.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                if (v.getTag().toString().equals("1"))
-                    v.setTag("2");
-                return false;
-            }
-        });
+            pbProgress.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    pbProgress.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View v) {
+                            if (v.getTag().toString().equals("3"))
+                                dismiss();
+                            return false;
+                        }
+                    });
 
-        pbProgress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pbProgress.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        if (v.getTag().toString().equals("3"))
-                            dismiss();
-                        return false;
-                    }
-                });
+                    if (v.getTag().toString().equals("2"))
+                        v.setTag("3");
+                }
+            });
+        }
 
-                if (v.getTag().toString().equals("2"))
-                    v.setTag("3");
-            }
-        });
-
-
-        TxtMessage = (TextView) findViewById(R.id.txtProgress);
+        TxtMessage = findViewById(R.id.txtProgress);
         if (mMessage.equals(""))
             TxtMessage.setVisibility(View.GONE);
         else

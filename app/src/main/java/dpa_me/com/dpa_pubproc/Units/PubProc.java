@@ -19,6 +19,8 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -557,7 +559,6 @@ public class PubProc {
 		public static boolean InsertData(SQLiteDatabase database, String sqltxt) {
 			try {
 				database.execSQL(sqltxt);
-				database.close();
 				return true;
 			} catch (Exception ex) {
 				Log.e("SQLite INSERT ERROR", " <<" + sqltxt + ">> " + ex.toString());
@@ -706,7 +707,6 @@ public class PubProc {
 		public static boolean UpdateData(SQLiteDatabase database, String sqltxt) {
 			try {
 				database.execSQL(sqltxt);
-				database.close();
 				return true;
 			} catch (Exception ex) {
 				return false;
@@ -1360,6 +1360,12 @@ public class PubProc {
 			return String.valueOf(randnum);
 		}
 
+		public static String CreateRandomNumber(int randLenght){
+			Random r = new Random();
+			int randnum = (int) (r.nextInt((int) ((Math.pow(10, randLenght + 1) - 1) - Math.pow(10, randLenght))) + Math.pow(10, randLenght));
+			return String.valueOf(randnum);
+		}
+
 		public static void verifyPermissions(final Activity activity) {
 			// Check if we have write permission
 			int permission = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -1796,6 +1802,12 @@ public class PubProc {
 	}
 
 	public static class HandleImagesAndAnimations {
+		public static void applyGrayScale(ImageView imgview) {
+			ColorMatrix matrix = new ColorMatrix();
+			matrix.setSaturation(0);
+			ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+			imgview.setColorFilter(filter);
+		}
 
 		public static String toBase64(Bitmap bitmap, Bitmap.CompressFormat compressFormat) {
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

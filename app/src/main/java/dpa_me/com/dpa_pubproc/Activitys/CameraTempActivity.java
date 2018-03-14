@@ -1,4 +1,4 @@
-package dpa_me.com.dpa_pubproc.Dialogs;
+package dpa_me.com.dpa_pubproc.Activitys;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -25,7 +25,7 @@ import dpa_me.com.dpa_pubproc.R;
 
 import static com.yalantis.ucrop.UCrop.REQUEST_CROP;
 
-public class TempActivity extends AppCompatActivity {
+public class CameraTempActivity extends AppCompatActivity {
 
     PickerManager pickerManager;
 
@@ -34,7 +34,7 @@ public class TempActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         this.pickerManager = GlobalHolder.getInstance().getPickerManager();
-        this.pickerManager.setActivity(TempActivity.this);
+        this.pickerManager.setActivity(CameraTempActivity.this);
         this.pickerManager.pickPhotoWithPermission();
 
     }
@@ -104,8 +104,8 @@ public class TempActivity extends AppCompatActivity {
         public static final int SELECT_FROM_GALLERY = 0;
         public static final int SELECT_FROM_CAMERA = 1;
         private Activity activity;
-        private PickerBuilder.onPermissionRefusedListener permissionRefusedListener;
-        protected PickerBuilder.onImageReceivedListener imageReceivedListener;
+        private onPermissionRefusedListener permissionRefusedListener;
+        protected onImageReceivedListener imageReceivedListener;
         private PickerManager pickerManager;
 
         public PickerBuilder(Activity activity, int type) {
@@ -125,19 +125,19 @@ public class TempActivity extends AppCompatActivity {
 
 
         public void start() {
-            Intent intent = new Intent(activity, TempActivity.class);
+            Intent intent = new Intent(activity, CameraTempActivity.class);
             activity.startActivity(intent);
 
             GlobalHolder.getInstance().setPickerManager(pickerManager);
 
         }
 
-        public PickerBuilder setOnImageReceivedListener(PickerBuilder.onImageReceivedListener listener) {
+        public PickerBuilder setOnImageReceivedListener(onImageReceivedListener listener) {
             pickerManager.setOnImageReceivedListener(listener);
             return this;
         }
 
-        public PickerBuilder setOnPermissionRefusedListener(PickerBuilder.onPermissionRefusedListener listener) {
+        public PickerBuilder setOnPermissionRefusedListener(onPermissionRefusedListener listener) {
             pickerManager.setOnPermissionRefusedListener(listener);
             return this;
         }
@@ -225,7 +225,7 @@ public class TempActivity extends AppCompatActivity {
         private UCrop uCrop;
         protected PickerBuilder.onImageReceivedListener imageReceivedListener;
         protected PickerBuilder.onPermissionRefusedListener permissionRefusedListener;
-        private int cropActivityColor = R.color.primary_dark;
+        private int cropActivityColor = R.color.primary;
 
         public PickerManager setOnImageReceivedListener(PickerBuilder.onImageReceivedListener listener) {
             this.imageReceivedListener = listener;
@@ -283,6 +283,21 @@ public class TempActivity extends AppCompatActivity {
         protected abstract void sendToExternalApp();
 
         protected Uri getImageFile() {
+            String imagePathDownLoad = Environment.getExternalStorageDirectory() + "/" +
+                    (folder == null ?
+                            Environment.DIRECTORY_DOWNLOADS :folder);
+
+            File pathDownload = new File(imagePathDownLoad);
+            if (!pathDownload.exists()) {
+                pathDownload.mkdir();
+            } else {
+                try {
+                    FileUtils.cleanDirectory(pathDownload);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
             String imagePathStr = Environment.getExternalStorageDirectory() + "/" +
                     (folder == null ?
                             Environment.DIRECTORY_DOWNLOADS + "/" + activity.getString(R.string.app_name) :
@@ -311,7 +326,8 @@ public class TempActivity extends AppCompatActivity {
 
         public void startCropActivity() {
             if (uCrop == null) {
-                uCrop = UCrop.of(mProcessingPhotoUri, getImageFile());
+                Uri filename = getImageFile();
+                uCrop = UCrop.of(mProcessingPhotoUri, filename);
                 uCrop = uCrop.withAspectRatio(mX, mY);
                 uCrop = uCrop.withMaxResultSize(mX, mY);
                 UCrop.Options options = new UCrop.Options();
@@ -319,7 +335,7 @@ public class TempActivity extends AppCompatActivity {
                 options.setLogoColor(activity.getResources().getColor(R.color.primary_text));
                 options.setToolbarColor(activity.getResources().getColor(R.color.primary_dark));
                 options.setStatusBarColor(activity.getResources().getColor(R.color.primary_dark));
-                options.setActiveWidgetColor(activity.getResources().getColor(R.color.primary_dark));
+                options.setActiveWidgetColor(activity.getResources().getColor(R.color.primary));
                 options.setToolbarTitle("برش تصویر");
                 uCrop = uCrop.withOptions(options);
             }

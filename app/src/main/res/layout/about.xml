@@ -2,41 +2,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#616161">
+    android:background="@color/TextColorLight">
 
     <RelativeLayout
+        android:id="@+id/acs_lay_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:id="@+id/abmMenuLayout"
-        android:background="@color/primary_dark">
+        android:layout_height="35sp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/primary">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/Title"
-            android:textColor="@color/TextColorLight"
-            android:textSize="14sp"
-            android:gravity="center"
-            android:layout_alignTop="@+id/MenuButton"
-            android:layout_alignParentRight="true" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5sp"
+            android:background="@drawable/serach_bar_rectangle"/>
 
-        <ImageView
-            android:layout_width="40sp"
-            android:layout_height="40sp"
-            android:id="@+id/MenuButton"
-            android:src="@drawable/menu"
-            android:layout_alignParentEnd="false"
-            android:scaleType="fitCenter"
-            android:padding="5sp"
-            android:tint="@color/accent"
-            android:layout_marginRight="5sp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true" />
     </RelativeLayout>
 
     <TextView
-        android:layout_below="@+id/abmMenuLayout"
         android:id="@+id/todotype"
+        android:layout_below="@+id/acs_lay_toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -45,7 +32,7 @@
         android:padding="10sp"/>
 
     <ImageView
-        android:layout_below="@+id/abmMenuLayout"
+        android:layout_below="@+id/acs_lay_toolbar"
         android:id="@+id/backImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

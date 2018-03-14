@@ -30,7 +30,7 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".Dialogs.TempActivity"
+            android:name=".Activitys.CameraTempActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Translucent"/>
         <activity

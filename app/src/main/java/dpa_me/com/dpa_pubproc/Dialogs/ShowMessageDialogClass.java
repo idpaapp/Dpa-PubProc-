@@ -9,6 +9,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import dpa_me.com.dpa_pubproc.CustomViews.StrokeTextView;
 import dpa_me.com.dpa_pubproc.R;
 import dpa_me.com.dpa_pubproc.Units.PubProc;
 
@@ -17,8 +18,9 @@ public class ShowMessageDialogClass extends Dialog implements
 
     public Activity c;
     public Dialog d;
-    public TextView yes;
-    public TextView BtnOption;
+    public View yes;
+    public View BtnOption;
+    StrokeTextView title;
     public ImageView Logo;
     public TextView TxtMessage;
     private String mMessage = "";
@@ -66,47 +68,76 @@ public class ShowMessageDialogClass extends Dialog implements
         getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         setCancelable(false);
         PubProc.HandleViewAndFontSize.overrideFonts(getContext(), findViewById(R.id.MainLayout));
-        findViewById(R.id.MainLayout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
 
-        TxtMessage = (TextView) findViewById(R.id.txt_dia);
+        TxtMessage = findViewById(R.id.txt_dia);
         TxtMessage.setText(mMessage);
 
-        yes = (TextView) findViewById(R.id.btn_yes);
-        yes.setText(mBtnCaption);
+        yes = findViewById(R.id.btn_yes);
         yes.setOnClickListener(mBtnOnClick);
 
-        BtnOption = (TextView) findViewById(R.id.btn_Option);
-        BtnOption.setText(mOptionCaption);
+        BtnOption = findViewById(R.id.btn_Option);
         BtnOption.setOnClickListener(mOptionOnClick);
+
+        if (yes instanceof TextView) {
+            ((TextView) yes).setText(mBtnCaption);
+            ((TextView) BtnOption).setText(mOptionCaption);
+        }
+
+        if (yes instanceof StrokeTextView) {
+            ((StrokeTextView) yes).setText(mBtnCaption);
+            ((StrokeTextView) BtnOption).setText(mOptionCaption);
+        }
 
         if (!mOptionCaption.equals("")) {
             BtnOption.setVisibility(View.VISIBLE);
             yes.setVisibility(View.VISIBLE);
         }
 
-        Logo = (ImageView) findViewById(R.id.Logo);
-        PubProc.HandleImagesAndAnimations.JumpInAnimation(Logo, 300, 200);
+        Logo = findViewById(R.id.Logo);
 
-        switch (mMessageType){
-            case 1: {
-                yes.setBackgroundResource(R.color.OKColor);
-                Logo.setImageResource(R.drawable.success);
-                break;
+        if (Logo != null)
+            PubProc.HandleImagesAndAnimations.JumpInAnimation(Logo, 300, 200);
+
+        if (yes instanceof StrokeTextView) {
+            title = findViewById(R.id.title);
+            View btn_close = findViewById(R.id.btn_close);
+            btn_close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dismiss();
+                }
+            });
+            switch (mMessageType) {
+                case 1: {
+                    title.setText(getContext().getString(R.string.app_name));
+                    break;
+                }
+                case 2: {
+                    title.setText(getContext().getString(R.string.messError));
+                    break;
+                }
+                case 3: {
+                    title.setText(getContext().getString(R.string.messWarning));
+                    break;
+                }
             }
-            case 2: {
-                yes.setBackgroundResource(R.color.CancelColor);
-                Logo.setImageResource(R.drawable.error);
-                break;
-            }
-            case 3: {
-                yes.setBackgroundResource(R.color.WarningColor);
-                Logo.setImageResource(R.drawable.warning);
-                break;
+        } else {
+            switch (mMessageType) {
+                case 1: {
+                    yes.setBackgroundResource(R.color.OKColor);
+                    Logo.setImageResource(R.drawable.success);
+                    break;
+                }
+                case 2: {
+                    yes.setBackgroundResource(R.color.CancelColor);
+                    Logo.setImageResource(R.drawable.error);
+                    break;
+                }
+                case 3: {
+                    yes.setBackgroundResource(R.color.WarningColor);
+                    Logo.setImageResource(R.drawable.warning);
+                    break;
+                }
             }
         }
     }

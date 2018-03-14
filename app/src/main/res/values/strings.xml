@@ -74,7 +74,7 @@
     <string name="lblEmail">پست الکترونیک</string>
     <string name="lblPassword">کلمه عبور</string>
     <string name="lblName">نام و نام خانوادگی</string>
-    <string name="lblMobile">تلفن تماس</string>
+    <string name="lblMobile">تلفن همراه</string>
     <string name="lblRegisterDate">تاریخ ثبت نام</string>
     <string name="lblUserCategory">مهارت ها</string>
     <string name="lblResume">رزومه</string>
@@ -183,7 +183,7 @@
     <string name="messCategoryRequired">تعیین دسته بندی الزامی می باشد</string>
     <string name="messPriceRequired">نعیین بازه قیمت الزامی می باشد</string>
     <string name="messPriceRangIncorrect">بازه قیمتی تعیین شده صحیح نمی باشد</string>
-    <string name="messLocationRequired">تعیین شهر محل آگهی الزامی می باشد</string>
+    <string name="messLocationRequired">تعیین شهر الزامی می باشد</string>
     <string name="lblRemove">حذف</string>
     <string name="lblSignOutFromApp">خروج از حساب کاربری</string>
     <string name="lblEdit">ویرایش</string>
@@ -267,13 +267,15 @@
     <string name="lblFinalCheck">تایید نهایی پروژه</string>
     <string name="messMobileIsInvalid">تلفن همراه وارد شده نا معتبر می باشد</string>
     <string name="messItemDublicated">مورد انتخابی تکراری می باشد</string>
-    <string name="messPasswordMust8Chars">کلمه عبور باید حداقل 6 کاراکتر یا عدد باشد</string>
+    <string name="messPasswordMust8Chars">کلمه عبور باید حداقل 8 کاراکتر یا عدد باشد</string>
     <string name="messPurcheseBid">برای ارسال پیشنهاد ابتدا باید بسته خریداری نمایید</string>
     <string name="lblNotFinalConfirmed">عدم تایید تحویل</string>
     <string name="messPleaseContactUsIfNotConfirmed">تایید نهایی برای اتمام پروژه انجام نشد. در صورت عدم توافق با آگهی دهنده با پشتیبانی بگول تماس حاصل فرمایید.</string>
     <string name="lblNotSubmited">مورد تایید آگهی دهنده قرار نگرفت.</string>
     <string name="lblGetProject">"تحویل "</string>
     <string name="messErrorHappend">متاسفانه نرم افزار با خطا مواجه شده است.</string>
+    <string name="messError">خطا</string>
+    <string name="messWarning">اخطار</string>
     <string name="messErrorSending">در حال ارسال خطا</string>
     <string name="lblDirectory">دایرکتوری</string>
     <string name="lblRequest">درخواست</string>
@@ -328,6 +330,7 @@
     <string name="messWorkSampleTitleRequired">تغیین عنوان نمونه کار الزامی می باشد</string>
     <string name="messRecycleCodeSent">کد بازیابی برای شما ارسال گردید</string>
     <string name="myAdvs">آگهی های من</string>
+    <string name="lblMyFav">آگهی های مورد علاقه من</string>
     <string name="lblTermsAndServices">قوانین و مقررات</string>
     <string name="lblFinish">اتمام</string>
 
@@ -359,7 +362,7 @@
     <string name="lblPayablePrice">قابل پرداخت</string>
     <string name="lblUpgradeType">نوع ارتقاء</string>
     <string name="messBalanceIsNotEnough">اعتبار کافی نمی باشد</string>
-    <string name="mnuShop">بازارچه</string>
+    <string name="mnuShop">فروشگاه</string>
     <string name="lblViewProfile">پروفایل</string>
     <string name="messChooseOne">یکی از موارد زیر را انتخاب نمایید</string>
     <string name="messReportIsRecived">گزارش شما ثبت و پیگیری خواهد شد</string>
