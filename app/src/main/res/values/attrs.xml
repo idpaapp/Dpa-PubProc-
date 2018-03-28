@@ -57,7 +57,7 @@
         <attr name="styOffset" format="float"/>
         <attr name="stxPivote" format="float"/>
         <attr name="styPivote" format="float"/>
-        <attr name="scaleType" format="integer">
+        <attr name="stScaleType" format="integer">
             <flag name="center" value="0"/>
             <flag name="fitCenter" value="1"/>
             <flag name="rightCenter" value="2"/>
@@ -71,6 +71,13 @@
         <attr name="yOffset" format="float"/>
         <attr name="xPivote" format="float"/>
         <attr name="yPivote" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="PushRelativeLayout">
+        <attr name="plxOffset" format="float"/>
+        <attr name="plyOffset" format="float"/>
+        <attr name="plxPivote" format="float"/>
+        <attr name="plyPivote" format="float"/>
     </declare-styleable>
 
 

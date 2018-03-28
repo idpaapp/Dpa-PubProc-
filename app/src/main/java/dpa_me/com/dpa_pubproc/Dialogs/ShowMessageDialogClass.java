@@ -104,9 +104,10 @@ public class ShowMessageDialogClass extends Dialog implements
             btn_close.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    dismiss();
+                    yes.callOnClick();
                 }
             });
+
             switch (mMessageType) {
                 case 1: {
                     title.setText(getContext().getString(R.string.app_name));

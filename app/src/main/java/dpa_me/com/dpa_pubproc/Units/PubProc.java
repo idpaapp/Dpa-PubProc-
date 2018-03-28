@@ -1320,7 +1320,7 @@ public class PubProc {
 					} else {
 						try {
 							DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-							HttpPost httppost = new HttpPost(HttpRootAddress + "WebService/verify_number.php");
+							HttpPost httppost = new HttpPost(HttpRootAddress + "api/verify_number.php");
 							List<NameValuePair> nameValuePairs = new ArrayList<>(2);
 							nameValuePairs.add(new BasicNameValuePair("PHONE_NUABMER", PhoneNumber));
 							nameValuePairs.add(new BasicNameValuePair("RCODE", RCode));

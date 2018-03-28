@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -97,7 +98,7 @@ public class StrokeTextView extends FrameLayout {
 
             mText = attributes.getString(R.styleable.StrokeTextView_stCaption);
 
-            switch (attributes.getInt(R.styleable.StrokeTextView_scaleType, 0)){
+            switch (attributes.getInt(R.styleable.StrokeTextView_stScaleType, 0)){
                 case 0:
                     mainText.setScaleType(ImageView.ScaleType.CENTER);
                     strokeText.setScaleType(ImageView.ScaleType.CENTER);
@@ -130,6 +131,11 @@ public class StrokeTextView extends FrameLayout {
             RelativeLayout.LayoutParams stparams = (RelativeLayout.LayoutParams) strokeText.getLayoutParams();
             mtparams.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
             stparams.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                mainText.setPaddingRelative(leftMargin, topMargin, rightMargin, bottomMargin);
+                strokeText.setPaddingRelative(leftMargin, topMargin, rightMargin, bottomMargin);
+            }
 
             mainText.setLayoutParams(mtparams);
             strokeText.setLayoutParams(stparams);
