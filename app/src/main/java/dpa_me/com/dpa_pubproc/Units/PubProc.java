@@ -1258,9 +1258,13 @@ public class PubProc {
         }
 
         public static void SendNotification(Activity a, String Meessage, String Title, Class DistinationActivity, int image, Runnable AfterRun) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                createChannel(a);
+            }
+
             try {
                 Log.d("OnSignal", "Notification: " + Meessage);
-                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(a, "media_playback_channel")
+                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(a, CHANNEL_ID)
                         .setSmallIcon(image)
                         .setContentTitle(Title)
                         .setContentText(Meessage)
@@ -1283,13 +1287,9 @@ public class PubProc {
         }
 
         public static void SendNotification(Service a, String Meessage, String Title, Class DistinationActivity, int image, Runnable AfterRun) {
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 createChannel(a);
             }
-
-            NotificationCompat.Builder notificationBuilder =
-                    new NotificationCompat.Builder(a, CHANNEL_ID);
 
             try {
                 Log.d("OnSignal", "Notification: " + Meessage);
