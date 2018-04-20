@@ -57,6 +57,7 @@
         <attr name="styOffset" format="float"/>
         <attr name="stxPivote" format="float"/>
         <attr name="styPivote" format="float"/>
+        <attr name="stClickable" format="boolean"/>
         <attr name="stScaleType" format="integer">
             <flag name="center" value="0"/>
             <flag name="fitCenter" value="1"/>

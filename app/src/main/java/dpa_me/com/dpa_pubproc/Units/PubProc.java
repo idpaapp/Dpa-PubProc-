@@ -42,8 +42,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.media.session.MediaButtonReceiver;
-import android.support.v4.media.session.PlaybackStateCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -87,10 +85,12 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.protocol.HTTP;
+import org.apache.http.util.ByteArrayBuffer;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -104,6 +104,7 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.net.InetAddress;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -126,8 +127,6 @@ import dpa_me.com.dpa_pubproc.Dialogs.QuestionDialogClass;
 import dpa_me.com.dpa_pubproc.Dialogs.ShowMessageDialogClass;
 import dpa_me.com.dpa_pubproc.R;
 
-import static android.R.attr.description;
-import static android.R.attr.title;
 import static android.widget.ImageView.ScaleType.CENTER_CROP;
 
 public class PubProc {
@@ -1355,6 +1354,56 @@ public class PubProc {
     }
 
     public static class HandleApplication {
+        public static void DownloadFile(final String DownloadUrl, final String fileName, final Runnable runnable) {
+            new RunAsyncTask(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        File root = android.os.Environment.getExternalStorageDirectory();
+                        File dir = new File(root.getAbsolutePath());
+                        if (dir.exists() == false) {
+                            dir.mkdirs();
+                        }
+
+                        URL url = new URL(DownloadUrl);
+                        File file = new File(dir, fileName);
+
+                        long startTime = System.currentTimeMillis();
+                        Log.d("DownloadManager", "download url:" + url);
+                        Log.d("DownloadManager", "download file name:" + fileName);
+
+                        URLConnection uconn = url.openConnection();
+                        uconn.setReadTimeout(30000);
+                        uconn.setConnectTimeout(30000);
+
+                        InputStream is = uconn.getInputStream();
+                        BufferedInputStream bufferinstream = new BufferedInputStream(is);
+
+                        ByteArrayBuffer baf = new ByteArrayBuffer(5000);
+                        int current = 0;
+                        while ((current = bufferinstream.read()) != -1) {
+                            baf.append((byte) current);
+                        }
+
+                        FileOutputStream fos = new FileOutputStream(file);
+                        fos.write(baf.toByteArray());
+                        fos.flush();
+                        fos.close();
+                        Log.d("DownloadManager", "download ready in" + ((System.currentTimeMillis() - startTime) / 1000) + "sec");
+                    } catch (IOException e) {
+                        Log.d("DownloadManager", "Error:" + e);
+                    }
+                }
+            }, new Runnable() {
+                @Override
+                public void run() {
+                    if (runnable != null)
+                        runnable.run();
+                }
+            }).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+        }
+
         public static void SavePreferences(Context mcContext, String key, String value) {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mcContext);
             SharedPreferences.Editor editor = preferences.edit();
@@ -1611,6 +1660,58 @@ public class PubProc {
             return mContext;
         }
 
+        public static Context SetActivityParams(final AppCompatActivity activity, int ActivityLayout,
+                                                boolean HasDrawerLayout, String Title, final Runnable runnable) {
+            Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+                @Override
+                public void uncaughtException(Thread thread, Throwable e) {
+                    if (runnable != null)
+                        runnable.run();
+                }
+            });
+
+            activity.setContentView(ActivityLayout);
+            activity.setTitle("");
+            DisplayMetrics metrics = new DisplayMetrics();
+            activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+            mContext = activity.getApplicationContext();
+            mInflater = (LayoutInflater) PubProc.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            xdpi = metrics.widthPixels;
+            ydpi = metrics.heightPixels;
+            DisplayDensityDpi = metrics.density;
+            LastTitle = new ArrayList<String>();
+            mFragmentManager = activity.getSupportFragmentManager();
+            mMainFragmentManager = activity.getSupportFragmentManager();
+            mActivity = activity;
+            MainTypeFace = Typeface.createFromAsset(activity.getAssets(), "BTrafcBd.ttf");
+            if (activity.getSupportActionBar() != null)
+                activity.getSupportActionBar().hide();
+
+            if (HasDrawerLayout) {
+                mDrawerLayout = activity.findViewById(R.id.drawer_layout);
+                mDrawerList = activity.findViewById(R.id.left_drawer);
+
+
+                HandleMainMenu.CreateDrawerMenu(mDrawerLayout, mDrawerList, null, activity.getSupportActionBar());
+            }
+
+            ImageView BackBtn = activity.findViewById(R.id.BackBtn);
+            if (BackBtn != null) {
+                BackBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        activity.finish();
+                    }
+                });
+            }
+
+            TextView mTitle = activity.findViewById(R.id.Title);
+            if (mTitle != null) {
+                mTitle.setText(Title);
+            }
+            return mContext;
+        }
 
         public static Context SetActivityParams(final AppCompatActivity activity, int ActivityLayout,
                                                 boolean HasDrawerLayout, String Title, final int EnterAnim, final int ExitAnim) {

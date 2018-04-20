@@ -41,6 +41,7 @@ public class StrokeTextView extends FrameLayout {
 
     private TypedArray attributes;
     private String mText;
+    private boolean clickable;
 
 
     public StrokeTextView(Context context) {
@@ -126,6 +127,7 @@ public class StrokeTextView extends FrameLayout {
             yOffset = attributes.getFloat(R.styleable.StrokeTextView_styOffset, 1f);
             xPivote = attributes.getFloat(R.styleable.StrokeTextView_stxPivote, 0.5f);
             yPivote = attributes.getFloat(R.styleable.StrokeTextView_styPivote, 0.5f);
+            clickable = attributes.getBoolean(R.styleable.StrokeTextView_stClickable, true);
 
             RelativeLayout.LayoutParams mtparams = (RelativeLayout.LayoutParams) mainText.getLayoutParams();
             RelativeLayout.LayoutParams stparams = (RelativeLayout.LayoutParams) strokeText.getLayoutParams();
@@ -142,57 +144,59 @@ public class StrokeTextView extends FrameLayout {
 
             back_layout.setBackgroundResource(attributes.getResourceId(R.styleable.StrokeTextView_stBackground, Color.TRANSPARENT));
 
-            setOnTouchListener(new OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    Animation anim;
-                    switch(event.getAction()) {
-                        case MotionEvent.ACTION_DOWN:
-                            anim = new ScaleAnimation(
-                                    1f, xOffset,
-                                    1f, yOffset,
-                                    Animation.RELATIVE_TO_SELF, xPivote,
-                                    Animation.RELATIVE_TO_SELF, yPivote);
-                            anim.setFillAfter(true);
-                            anim.setDuration(300);
-                            v.startAnimation(anim);
-                            break;
+            if (clickable) {
+                setOnTouchListener(new OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        Animation anim;
+                        switch (event.getAction()) {
+                            case MotionEvent.ACTION_DOWN:
+                                anim = new ScaleAnimation(
+                                        1f, xOffset,
+                                        1f, yOffset,
+                                        Animation.RELATIVE_TO_SELF, xPivote,
+                                        Animation.RELATIVE_TO_SELF, yPivote);
+                                anim.setFillAfter(true);
+                                anim.setDuration(300);
+                                v.startAnimation(anim);
+                                break;
 
-                        case MotionEvent.ACTION_MOVE:
-                            // touch move code
-                            break;
+                            case MotionEvent.ACTION_MOVE:
+                                // touch move code
+                                break;
 
-                        case MotionEvent.ACTION_UP:
-                            anim = new ScaleAnimation(
-                                    xOffset, 1f,
-                                    yOffset, 1f,
-                                    Animation.RELATIVE_TO_SELF, xPivote,
-                                    Animation.RELATIVE_TO_SELF, yPivote);
-                            anim.setFillAfter(true);
-                            anim.setDuration(300);
-                            anim.setAnimationListener(new Animation.AnimationListener() {
-                                @Override
-                                public void onAnimationStart(Animation animation) {
+                            case MotionEvent.ACTION_UP:
+                                anim = new ScaleAnimation(
+                                        xOffset, 1f,
+                                        yOffset, 1f,
+                                        Animation.RELATIVE_TO_SELF, xPivote,
+                                        Animation.RELATIVE_TO_SELF, yPivote);
+                                anim.setFillAfter(true);
+                                anim.setDuration(300);
+                                anim.setAnimationListener(new Animation.AnimationListener() {
+                                    @Override
+                                    public void onAnimationStart(Animation animation) {
 
-                                }
+                                    }
 
-                                @Override
-                                public void onAnimationEnd(Animation animation) {
-                                    clearAnimation();
-                                }
+                                    @Override
+                                    public void onAnimationEnd(Animation animation) {
+                                        clearAnimation();
+                                    }
 
-                                @Override
-                                public void onAnimationRepeat(Animation animation) {
+                                    @Override
+                                    public void onAnimationRepeat(Animation animation) {
 
-                                }
-                            });
-                            v.startAnimation(anim);
-                            callOnClick();
-                            break;
+                                    }
+                                });
+                                v.startAnimation(anim);
+                                callOnClick();
+                                break;
+                        }
+                        return true;
                     }
-                    return true;
-                }
-            });
+                });
+            }
         }
 
         addView(view);

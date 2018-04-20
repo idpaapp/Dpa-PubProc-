@@ -71,6 +71,16 @@ public class PushRelativeLayout extends RelativeLayout {
                         v.startAnimation(anim);
                         callOnClick();
                         break;
+                    default:
+                        anim = new ScaleAnimation(
+                                xOffset, 1f,
+                                yOffset, 1f,
+                                Animation.RELATIVE_TO_SELF, xPivote,
+                                Animation.RELATIVE_TO_SELF, yPivote);
+                        anim.setFillAfter(true);
+                        anim.setDuration(300);
+                        v.startAnimation(anim);
+                        break;
                 }
                 return true;
             }
