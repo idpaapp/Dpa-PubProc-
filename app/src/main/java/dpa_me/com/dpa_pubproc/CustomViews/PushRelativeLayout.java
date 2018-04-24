@@ -10,6 +10,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.RelativeLayout;
 
 import dpa_me.com.dpa_pubproc.R;
+import dpa_me.com.dpa_pubproc.Units.PubProc;
 
 public class PushRelativeLayout extends RelativeLayout {
     private float xOffset;
@@ -70,6 +71,7 @@ public class PushRelativeLayout extends RelativeLayout {
                         anim.setDuration(300);
                         v.startAnimation(anim);
                         callOnClick();
+                        PubProc.HandleSounds.playSound(PubProc.mContext, R.raw.click);
                         break;
                     default:
                         anim = new ScaleAnimation(

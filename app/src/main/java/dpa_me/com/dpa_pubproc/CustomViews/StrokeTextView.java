@@ -79,6 +79,28 @@ public class StrokeTextView extends FrameLayout {
         return mText;
     }
 
+    public void setTextColor(int color){
+        mainText.setImageBitmap(textAsBitmapNoStorke(mText,
+                attributes.getDimensionPixelSize(R.styleable.StrokeTextView_stTextSize, 14),
+                getResources().getColor(color)));
+    }
+
+    public void setStrokeColor(int color){
+        strokeText.setImageBitmap(textAsBitmapNoStorke(mText,
+                attributes.getDimensionPixelSize(R.styleable.StrokeTextView_stTextSize, 14),
+                getResources().getColor(color)));
+    }
+
+    public void setStrokeAndTextColor(int textColor, int strokeColor){
+        mainText.setImageBitmap(textAsBitmapNoStorke(mText,
+                attributes.getDimensionPixelSize(R.styleable.StrokeTextView_stTextSize, 14),
+                getResources().getColor(textColor)));
+
+        strokeText.setImageBitmap(textAsBitmapNoStorke(mText,
+                attributes.getDimensionPixelSize(R.styleable.StrokeTextView_stTextSize, 14),
+                getResources().getColor(strokeColor)));
+    }
+
     private void init(AttributeSet attrs) {
         final View view = inflate(getContext(), R.layout.stroke_text_view, null);
         mainText = view.findViewById(R.id.mainText);
@@ -190,6 +212,7 @@ public class StrokeTextView extends FrameLayout {
                                     }
                                 });
                                 v.startAnimation(anim);
+                                PubProc.HandleSounds.playSound(PubProc.mContext, R.raw.click);
                                 callOnClick();
                                 break;
                         }

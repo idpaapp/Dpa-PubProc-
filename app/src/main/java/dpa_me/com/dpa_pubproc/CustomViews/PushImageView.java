@@ -9,6 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 
 import dpa_me.com.dpa_pubproc.R;
+import dpa_me.com.dpa_pubproc.Units.PubProc;
 
 
 public class PushImageView extends android.support.v7.widget.AppCompatImageView {
@@ -69,6 +70,7 @@ public class PushImageView extends android.support.v7.widget.AppCompatImageView 
                         anim.setDuration(300);
                         v.startAnimation(anim);
                         callOnClick();
+                        PubProc.HandleSounds.playSound(PubProc.mContext, R.raw.click);
                         break;
                     default:
                         anim = new ScaleAnimation(

@@ -60,6 +60,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.view.animation.Transformation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView.OnItemClickListener;
@@ -1952,6 +1953,17 @@ public class PubProc {
             v.startAnimation(shake);
         }
 
+        public static void GlowAnimation(View v, int duration, int startOffset) {
+            AlphaAnimation  blinkanimation= new AlphaAnimation(1, 0.5f);
+            blinkanimation.setDuration(duration);
+            blinkanimation.setInterpolator(new LinearInterpolator());
+            blinkanimation.setRepeatCount(Animation.INFINITE);
+            blinkanimation.setRepeatMode(Animation.REVERSE);
+            blinkanimation.setStartOffset(startOffset);
+            v.setAnimation(blinkanimation);
+            v.startAnimation(blinkanimation);
+        }
+
         public static void FadeInAnimation(View v, int duration, int startOffset) {
             Animation fadeIn = new AlphaAnimation(0, 1);
             fadeIn.setInterpolator(new DecelerateInterpolator());
@@ -2011,6 +2023,17 @@ public class PubProc {
             slideIn.setStartOffset(startOffset);
             v.setAnimation(slideIn);
             v.startAnimation(slideIn);
+        }
+
+        public static void JumpInAnimation(View v, int duration, int startOffset, Runnable mRun) {
+            Animation slideIn = AnimationUtils.loadAnimation(mContext, R.anim.fab_scale_up);
+            slideIn.setInterpolator(new DecelerateInterpolator());
+            slideIn.setDuration(duration);
+            slideIn.setStartOffset(startOffset);
+            v.setAnimation(slideIn);
+            v.startAnimation(slideIn);
+
+            new Handler().postDelayed(mRun, startOffset);
         }
 
         public static void Expand(final View v) {
@@ -2272,6 +2295,16 @@ public class PubProc {
                 imageView.setVisibility(View.GONE);
             else if (ShowLogoNoImage)
                 imageView.setImageResource(R.drawable.logo);
+        }
+
+        public static Drawable LoadBase64InDrawable(String base64, boolean ShowLogoNoImage) {
+            if (!base64.equals("''") && !base64.equals("")) {
+                byte[] decodedString = Base64.decode(base64, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                return new BitmapDrawable(mContext.getResources(), decodedByte);
+            }else if (ShowLogoNoImage)
+                return mContext.getResources().getDrawable(R.drawable.logo);
+            else return null;
         }
 
         public static void LoadImageView(ImageView imageView, String base64OrImagePath, boolean HideOnNoImage, boolean ShowLogoNoImage) {
