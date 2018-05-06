@@ -1,6 +1,8 @@
 package dpa_me.com.dpa_pubproc.Units;
 
 import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -103,6 +105,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
+import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.URLConnection;
@@ -148,6 +151,7 @@ public class PubProc {
     public static FragmentManager mFragmentManager;
     public static FragmentManager mMainFragmentManager;
     public static FragmentManager mOrginalFragmentManager;
+    public static android.app.FragmentManager mAppFragmentManager;
     public static Context mContext;
     public static AppCompatActivity mActivity;
     public static Service mService;
@@ -1666,6 +1670,7 @@ public class PubProc {
             Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                 @Override
                 public void uncaughtException(Thread thread, Throwable e) {
+                    e.printStackTrace();
                     if (runnable != null)
                         runnable.run();
                 }
@@ -1909,6 +1914,17 @@ public class PubProc {
     }
 
     public static class HandleImagesAndAnimations {
+        public static ObjectAnimator BounceAnimation(View view, int duration) {
+            PropertyValuesHolder scalex = PropertyValuesHolder.ofFloat(View.SCALE_X, 0.8f);
+            PropertyValuesHolder scaley = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.8f);
+            ObjectAnimator anim = ObjectAnimator.ofPropertyValuesHolder(view, scalex, scaley);
+            anim.setRepeatCount(ValueAnimator.INFINITE);
+            anim.setRepeatMode(ValueAnimator.REVERSE);
+            anim.setDuration(duration);
+            anim.start();
+            return anim;
+        }
+
         public static void applyGrayScale(ImageView imgview) {
             ColorMatrix matrix = new ColorMatrix();
             matrix.setSaturation(0);
@@ -1954,7 +1970,7 @@ public class PubProc {
         }
 
         public static void GlowAnimation(View v, int duration, int startOffset) {
-            AlphaAnimation  blinkanimation= new AlphaAnimation(1, 0.5f);
+            AlphaAnimation blinkanimation = new AlphaAnimation(1, 0.5f);
             blinkanimation.setDuration(duration);
             blinkanimation.setInterpolator(new LinearInterpolator());
             blinkanimation.setRepeatCount(Animation.INFINITE);
@@ -2122,6 +2138,22 @@ public class PubProc {
             @Override
             public boolean willChangeBounds() {
                 return true;
+            }
+        }
+
+        public static Drawable drawableFromUrl(String url) {
+            Bitmap x;
+            try {
+
+                HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+
+                InputStream input = connection.getInputStream();
+                connection.connect();
+                x = BitmapFactory.decodeStream(input);
+                return new BitmapDrawable(x);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return mContext.getResources().getDrawable(R.drawable.logo);
             }
         }
 
@@ -2302,7 +2334,7 @@ public class PubProc {
                 byte[] decodedString = Base64.decode(base64, Base64.DEFAULT);
                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                 return new BitmapDrawable(mContext.getResources(), decodedByte);
-            }else if (ShowLogoNoImage)
+            } else if (ShowLogoNoImage)
                 return mContext.getResources().getDrawable(R.drawable.logo);
             else return null;
         }
@@ -2336,9 +2368,24 @@ public class PubProc {
     }
 
     public static class HandleSounds {
-        public static MediaPlayer playSound(Context context, int soundResource) {
+        public enum SoundState {
+            PLAY, PAUSE, RELEASE, STOP
+        }
+
+        public enum SoundType {
+            MUSIC, SOUND
+        }
+
+        public static MediaPlayer playSound(Context context, int soundResource, SoundType soundType) {
             MediaPlayer mp = MediaPlayer.create(context, soundResource);
-            mp.start();
+            if (soundType == SoundType.MUSIC)
+                if (HandleApplication.LoadPreferences(context, "MUSIC").equals("true"))
+                    mp.start();
+
+            if (soundType == SoundType.SOUND)
+                if (HandleApplication.LoadPreferences(context, "SOUND").equals("true"))
+                    mp.start();
+
             mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
@@ -2356,6 +2403,29 @@ public class PubProc {
                 mp.release();
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+        }
+
+        public static void ChangeSoundState(Context context, MediaPlayer mp, SoundState sound_state, SoundType soundType) {
+            switch (sound_state) {
+                case PLAY:
+                    if (mp != null) if (!mp.isPlaying()) if (soundType == SoundType.MUSIC)
+                        if (HandleApplication.LoadPreferences(context, "MUSIC").equals("true"))
+                            mp.start();
+
+                    if (soundType == SoundType.SOUND)
+                        if (HandleApplication.LoadPreferences(context, "SOUND").equals("true"))
+                            mp.start();;
+                    break;
+                case PAUSE:
+                    if (mp != null) if (mp.isPlaying()) mp.pause();
+                    break;
+                case STOP:
+                    if (mp != null) if (mp.isPlaying()) mp.stop();
+                    break;
+                case RELEASE:
+                    releasePlayer(mp);
+                    break;
             }
         }
 

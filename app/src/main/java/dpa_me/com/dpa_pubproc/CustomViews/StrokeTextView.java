@@ -212,7 +212,7 @@ public class StrokeTextView extends FrameLayout {
                                     }
                                 });
                                 v.startAnimation(anim);
-                                PubProc.HandleSounds.playSound(PubProc.mContext, R.raw.click);
+                                PubProc.HandleSounds.playSound(PubProc.mContext, R.raw.click, PubProc.HandleSounds.SoundType.SOUND);
                                 callOnClick();
                                 break;
                         }

@@ -70,7 +70,7 @@ public class PushImageView extends android.support.v7.widget.AppCompatImageView 
                         anim.setDuration(300);
                         v.startAnimation(anim);
                         callOnClick();
-                        PubProc.HandleSounds.playSound(PubProc.mContext, R.raw.click);
+                        PubProc.HandleSounds.playSound(PubProc.mContext, R.raw.click, PubProc.HandleSounds.SoundType.SOUND);
                         break;
                     default:
                         anim = new ScaleAnimation(
