@@ -38,6 +38,7 @@ import android.os.Message;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -1464,6 +1465,7 @@ public class PubProc {
                     && permission3 == PackageManager.PERMISSION_GRANTED;
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
         public static Snackbar makeText(Context context, String message, int duration) {
             Activity activity = (Activity) context;
             View layout;
@@ -1496,6 +1498,12 @@ public class PubProc {
             toast.setView(layout);
             HandleViewAndFontSize.overrideFonts(mContext, layout);
             toast.show();
+        }
+
+        public static void SnackMessage(String mMessage, String btnTitle, View.OnClickListener onClickListener) {
+            Snackbar.make(mActivity.findViewById(android.R.id.content),mMessage,
+                    Snackbar.LENGTH_INDEFINITE).setAction(btnTitle, onClickListener).show();
+
         }
 
         public static void handleUncaughtException(Activity a, Thread thread, Throwable e) {
@@ -1925,6 +1933,18 @@ public class PubProc {
             return anim;
         }
 
+        public static ObjectAnimator BounceAnimation(View view, float offset, int duration) {
+            PropertyValuesHolder scalex = PropertyValuesHolder.ofFloat(View.SCALE_X, offset);
+            PropertyValuesHolder scaley = PropertyValuesHolder.ofFloat(View.SCALE_Y, offset);
+            ObjectAnimator anim = ObjectAnimator.ofPropertyValuesHolder(view, scalex, scaley);
+            view.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+            anim.setRepeatCount(ValueAnimator.INFINITE);
+            anim.setRepeatMode(ValueAnimator.REVERSE);
+            anim.setDuration(duration);
+            anim.start();
+            return anim;
+        }
+
         public static void applyGrayScale(ImageView imgview) {
             ColorMatrix matrix = new ColorMatrix();
             matrix.setSaturation(0);
@@ -2329,6 +2349,17 @@ public class PubProc {
                 imageView.setImageResource(R.drawable.logo);
         }
 
+        public static void LoadBase64InImageView(ImageView imageView, String base64) {
+            if (!base64.equals("''") && !base64.equals("")) {
+                byte[] decodedString = Base64.decode(base64, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageView.setImageBitmap(decodedByte);
+                if (imageView.getTag() != null) {
+                    if (imageView.getTag().toString().equals("0")) imageView.setTag("1");
+                } else imageView.setTag("1");
+            }
+        }
+
         public static Drawable LoadBase64InDrawable(String base64, boolean ShowLogoNoImage) {
             if (!base64.equals("''") && !base64.equals("")) {
                 byte[] decodedString = Base64.decode(base64, Base64.DEFAULT);
@@ -2407,25 +2438,29 @@ public class PubProc {
         }
 
         public static void ChangeSoundState(Context context, MediaPlayer mp, SoundState sound_state, SoundType soundType) {
-            switch (sound_state) {
-                case PLAY:
-                    if (mp != null) if (!mp.isPlaying()) if (soundType == SoundType.MUSIC)
-                        if (HandleApplication.LoadPreferences(context, "MUSIC").equals("true"))
-                            mp.start();
+            try {
+                switch (sound_state) {
+                    case PLAY:
+                        if (mp != null) if (!mp.isPlaying()) if (soundType == SoundType.MUSIC)
+                            if (HandleApplication.LoadPreferences(context, "MUSIC").equals("true"))
+                                mp.start();
 
-                    if (soundType == SoundType.SOUND)
-                        if (HandleApplication.LoadPreferences(context, "SOUND").equals("true"))
-                            mp.start();;
-                    break;
-                case PAUSE:
-                    if (mp != null) if (mp.isPlaying()) mp.pause();
-                    break;
-                case STOP:
-                    if (mp != null) if (mp.isPlaying()) mp.stop();
-                    break;
-                case RELEASE:
-                    releasePlayer(mp);
-                    break;
+                        if (soundType == SoundType.SOUND)
+                            if (HandleApplication.LoadPreferences(context, "SOUND").equals("true"))
+                                mp.start();
+                        ;
+                        break;
+                    case PAUSE:
+                        if (mp != null) if (mp.isPlaying()) mp.pause();
+                        break;
+                    case STOP:
+                        if (mp != null) if (mp.isPlaying()) mp.stop();
+                        break;
+                    case RELEASE:
+                        releasePlayer(mp);
+                        break;
+                }
+            } catch (Exception ignored) {
             }
         }
 

@@ -12,11 +12,6 @@ android {
         versionName "1.0"
         buildConfigField "long", "TS", System.currentTimeMillis() + "L"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
-    }
-
-    dexOptions {
-        javaMaxHeapSize "4g"
     }
 
     buildTypes {
