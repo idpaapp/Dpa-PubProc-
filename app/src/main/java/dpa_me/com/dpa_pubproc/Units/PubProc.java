@@ -173,6 +173,8 @@ public class PubProc {
     public static String HttpRootAddress;
     public static String UserName;
     public static String UserTitleStr;
+    public static boolean OnBtnClicked;
+    public static Long mLastClickTime;
 
     public static ArrayList<MenuModel> SignedInMenu;
     public static ArrayList<MenuModel> SignedOutMenu;
@@ -724,6 +726,7 @@ public class PubProc {
                 database.execSQL(sqltxt);
                 return true;
             } catch (Exception ex) {
+                Log.d("SQLite_Update_Error", ex.toString());
                 return false;
             }
         }
@@ -1008,6 +1011,12 @@ public class PubProc {
         public static boolean CheckHash(String Str, String HashText) {
             String HashPass = HashText.replace("$2y$10$", "$2a$10$");
             return BCrypt.checkpw(Str, HashPass);
+        }
+
+        public static String if1Char(String chr){
+            if (chr.length() == 1)
+                return "0"+chr;
+            else return chr;
         }
 
         public static String ISNULL(String Value, String rValue) {
@@ -1789,9 +1798,13 @@ public class PubProc {
                 mProgressDialog = new MyProgressDialog(activity, mContext.getResources().getString(R.string.messPleaseWait));
 
             if (!mProgressDialog.isShowing()) {
-                mProgressDialog = new MyProgressDialog(activity, mContext.getResources().getString(R.string.messPleaseWait));
-                mProgressDialog.setCancelable(false);
-                mProgressDialog.show();
+                try {
+                    mProgressDialog = new MyProgressDialog(activity, mContext.getResources().getString(R.string.messPleaseWait));
+                    mProgressDialog.setCancelable(false);
+                    mProgressDialog.show();
+                }catch (Exception ex){
+
+                }
             }
         }
 
@@ -2061,15 +2074,29 @@ public class PubProc {
             v.startAnimation(slideIn);
         }
 
-        public static void JumpInAnimation(View v, int duration, int startOffset, Runnable mRun) {
+        public static void JumpInAnimation(View v, int duration, int startOffset, final Runnable mRun) {
             Animation slideIn = AnimationUtils.loadAnimation(mContext, R.anim.fab_scale_up);
-            slideIn.setInterpolator(new DecelerateInterpolator());
+            slideIn.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    mRun.run();
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+
             slideIn.setDuration(duration);
             slideIn.setStartOffset(startOffset);
             v.setAnimation(slideIn);
             v.startAnimation(slideIn);
-
-            new Handler().postDelayed(mRun, startOffset);
         }
 
         public static void Expand(final View v) {

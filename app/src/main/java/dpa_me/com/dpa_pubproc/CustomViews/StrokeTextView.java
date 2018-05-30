@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,6 +22,7 @@ import dpa_me.com.dpa_pubproc.R;
 import dpa_me.com.dpa_pubproc.Units.PubProc;
 
 import static android.graphics.Paint.ANTI_ALIAS_FLAG;
+import static dpa_me.com.dpa_pubproc.Units.PubProc.mLastClickTime;
 
 public class StrokeTextView extends FrameLayout {
     ImageView mainText;
@@ -103,6 +105,7 @@ public class StrokeTextView extends FrameLayout {
 
     private void init(AttributeSet attrs) {
         final View view = inflate(getContext(), R.layout.stroke_text_view, null);
+
         mainText = view.findViewById(R.id.mainText);
         strokeText = view.findViewById(R.id.strokeText);
         back_layout = view.findViewById(R.id.back_layout);
@@ -173,14 +176,14 @@ public class StrokeTextView extends FrameLayout {
                         Animation anim;
                         switch (event.getAction()) {
                             case MotionEvent.ACTION_DOWN:
-                                anim = new ScaleAnimation(
-                                        1f, xOffset,
-                                        1f, yOffset,
-                                        Animation.RELATIVE_TO_SELF, xPivote,
-                                        Animation.RELATIVE_TO_SELF, yPivote);
-                                anim.setFillAfter(true);
-                                anim.setDuration(300);
-                                v.startAnimation(anim);
+                                    anim = new ScaleAnimation(
+                                            1f, xOffset,
+                                            1f, yOffset,
+                                            Animation.RELATIVE_TO_SELF, xPivote,
+                                            Animation.RELATIVE_TO_SELF, yPivote);
+                                    anim.setFillAfter(true);
+                                    anim.setDuration(300);
+                                    v.startAnimation(anim);
                                 break;
 
                             case MotionEvent.ACTION_MOVE:
@@ -212,9 +215,15 @@ public class StrokeTextView extends FrameLayout {
                                     }
                                 });
                                 v.startAnimation(anim);
+
                                 PubProc.HandleSounds.playSound(PubProc.mContext, R.raw.click, PubProc.HandleSounds.SoundType.SOUND);
-                                callOnClick();
-                                break;
+
+                                try {
+                                    if (SystemClock.elapsedRealtime() - mLastClickTime > 1000) {
+                                        callOnClick();
+                                        mLastClickTime = SystemClock.elapsedRealtime();
+                                    }
+                                }catch (Exception ex) {}
                         }
                         return true;
                     }

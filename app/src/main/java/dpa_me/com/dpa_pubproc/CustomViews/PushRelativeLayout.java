@@ -2,6 +2,7 @@ package dpa_me.com.dpa_pubproc.CustomViews;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.RelativeLayout;
 
 import dpa_me.com.dpa_pubproc.R;
 import dpa_me.com.dpa_pubproc.Units.PubProc;
+
+import static dpa_me.com.dpa_pubproc.Units.PubProc.mLastClickTime;
 
 public class PushRelativeLayout extends RelativeLayout {
     private float xOffset;
@@ -32,7 +35,7 @@ public class PushRelativeLayout extends RelativeLayout {
         init(attrs);
     }
 
-    private void init(AttributeSet attrs){
+    private void init(AttributeSet attrs) {
         if (attrs != null) {
             TypedArray attributes = getContext().obtainStyledAttributes(attrs, R.styleable.PushRelativeLayout);
             xOffset = attributes.getFloat(R.styleable.PushRelativeLayout_plxOffset, 1f);
@@ -45,7 +48,7 @@ public class PushRelativeLayout extends RelativeLayout {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 Animation anim;
-                switch(event.getAction()) {
+                switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         anim = new ScaleAnimation(
                                 1f, xOffset,
@@ -70,7 +73,12 @@ public class PushRelativeLayout extends RelativeLayout {
                         anim.setFillAfter(true);
                         anim.setDuration(300);
                         v.startAnimation(anim);
-                        callOnClick();
+                        try {
+                            if (SystemClock.elapsedRealtime() - mLastClickTime > 1000) {
+                                callOnClick();
+                                mLastClickTime = SystemClock.elapsedRealtime();
+                            }
+                        }catch (Exception ex) {}
                         PubProc.HandleSounds.playSound(PubProc.mContext, R.raw.click, PubProc.HandleSounds.SoundType.SOUND);
                         break;
                     default:
