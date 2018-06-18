@@ -23,6 +23,7 @@ import dpa_me.com.dpa_pubproc.Units.PubProc;
 
 import static android.graphics.Paint.ANTI_ALIAS_FLAG;
 import static dpa_me.com.dpa_pubproc.Units.PubProc.mLastClickTime;
+import static dpa_me.com.dpa_pubproc.Units.PubProc.mLastClickedID;
 
 public class StrokeTextView extends FrameLayout {
     ImageView mainText;
@@ -219,9 +220,11 @@ public class StrokeTextView extends FrameLayout {
                                 PubProc.HandleSounds.playSound(PubProc.mContext, R.raw.click, PubProc.HandleSounds.SoundType.SOUND);
 
                                 try {
-                                    if (SystemClock.elapsedRealtime() - mLastClickTime > 1000) {
+                                    if ((SystemClock.elapsedRealtime() - mLastClickTime > 1000) ||
+                                            (SystemClock.elapsedRealtime() - mLastClickTime > 250  && mLastClickedID != getId())) {
                                         callOnClick();
                                         mLastClickTime = SystemClock.elapsedRealtime();
+                                        mLastClickedID = getId();
                                     }
                                 }catch (Exception ex) {}
                         }

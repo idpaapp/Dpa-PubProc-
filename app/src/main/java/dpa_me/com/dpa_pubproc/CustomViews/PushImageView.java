@@ -15,6 +15,7 @@ import dpa_me.com.dpa_pubproc.Units.PubProc;
 
 import static dpa_me.com.dpa_pubproc.Units.PubProc.OnBtnClicked;
 import static dpa_me.com.dpa_pubproc.Units.PubProc.mLastClickTime;
+import static dpa_me.com.dpa_pubproc.Units.PubProc.mLastClickedID;
 
 
 public class PushImageView extends android.support.v7.widget.AppCompatImageView {
@@ -76,9 +77,11 @@ public class PushImageView extends android.support.v7.widget.AppCompatImageView 
                         anim.setDuration(300);
                         v.startAnimation(anim);
                         try {
-                            if (SystemClock.elapsedRealtime() - mLastClickTime > 1000) {
+                            if ((SystemClock.elapsedRealtime() - mLastClickTime > 1000) ||
+                                    (SystemClock.elapsedRealtime() - mLastClickTime > 250  && mLastClickedID != getId())) {
                                 callOnClick();
                                 mLastClickTime = SystemClock.elapsedRealtime();
+                                mLastClickedID = getId();
                             }
                         }catch (Exception ex) {}
                         PubProc.HandleSounds.playSound(PubProc.mContext, R.raw.click, PubProc.HandleSounds.SoundType.SOUND);

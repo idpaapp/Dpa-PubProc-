@@ -1,5 +1,6 @@
 package dpa_me.com.dpa_pubproc.Units;
 
+import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
@@ -175,6 +176,7 @@ public class PubProc {
     public static String UserTitleStr;
     public static boolean OnBtnClicked;
     public static Long mLastClickTime;
+    public static int mLastClickedID;
 
     public static ArrayList<MenuModel> SignedInMenu;
     public static ArrayList<MenuModel> SignedOutMenu;
@@ -183,6 +185,12 @@ public class PubProc {
 
     public static SQLiteDatabase mDatabaseRead;
     public static SQLiteDatabase mDatabaseWrite;
+
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
 
     public static class HandleDate {
         public static int[] PersianToGregorian(int year, int month, int day) {
@@ -856,9 +864,7 @@ public class PubProc {
                             .getDeclaredField(staticTypefaceFieldName);
                     staticField.setAccessible(true);
                     staticField.set(null, newTypeface);
-                } catch (NoSuchFieldException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -1334,6 +1340,42 @@ public class PubProc {
             }
         }
 
+        public static void SendNotification(Service a, String Meessage, String Title, Class DistinationActivity,int larg_image, int image, Runnable AfterRun) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                createChannel(a);
+            }
+
+            try {
+                Log.d("OnSignal", "Notification: " + Meessage);
+                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(a, CHANNEL_ID)
+                        .setSmallIcon(image)
+                        .setLargeIcon(HandleImagesAndAnimations.drawableToBitmap(mService.getResources().getDrawable(larg_image)))
+                        .setContentTitle(Title)
+                        .setContentText(Meessage)
+                        .setStyle(new NotificationCompat.BigTextStyle().bigText(Meessage))
+                        .setAutoCancel(true)
+                        .setLights(a.getResources().getColor(R.color.primary), 100, 100)
+                        .setVibrate(new long[]{1000, 1000})
+                        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+
+                Intent myintent = new Intent(a, DistinationActivity);
+                myintent.putExtra("ShowNotification", "False");
+                PendingIntent pi = PendingIntent.getActivity(a, 0, myintent, Intent.FLAG_ACTIVITY_NEW_TASK);
+                mBuilder.setContentIntent(pi);
+
+                NotificationManager mNotificationManager =
+                        (NotificationManager) a.getSystemService(Context.NOTIFICATION_SERVICE);
+
+                mNotificationManager.notify(0, mBuilder.build());
+
+                if (AfterRun != null)
+                    AfterRun.run();
+
+            } catch (Exception ex) {
+                Log.d("OnSignal", "Error: " + ex.toString());
+            }
+        }
+
 
     }
 
@@ -1369,12 +1411,26 @@ public class PubProc {
     }
 
     public static class HandleApplication {
+        public static void verifyStoragePermissions(Activity activity) {
+            // Check if we have write permission
+            int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+            if (permission != PackageManager.PERMISSION_GRANTED) {
+                // We don't have permission so prompt the user
+                ActivityCompat.requestPermissions(
+                        activity,
+                        PERMISSIONS_STORAGE,
+                        REQUEST_EXTERNAL_STORAGE
+                );
+            }
+        }
+
         public static void DownloadFile(final String DownloadUrl, final String fileName, final Runnable runnable) {
             new RunAsyncTask(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                        File root = android.os.Environment.getExternalStorageDirectory();
+                        File root = android.os.Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
                         File dir = new File(root.getAbsolutePath());
                         if (dir.exists() == false) {
                             dir.mkdirs();

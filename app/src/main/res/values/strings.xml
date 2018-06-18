@@ -354,8 +354,8 @@
     <string name="lblIncPrice">مبلغ افزایش (تومان)</string>
     <string name="lblRedeem">کد هدیه</string>
     <string name="lblInternetPay">درگاه بانکی</string>
-    <string name="messRedeemCodeIsNotValid">کد هدیه معتبر نمی باشد</string>
-    <string name="messRedeemCodeIsUsed">این کد هدیه قبلا استفاده شده است</string>
+    <string name="messRedeemCodeIsNotValid">کد جایزه معتبر نمی باشد</string>
+    <string name="messRedeemCodeIsUsed">این کد جایزه قبلا استفاده شده است</string>
     <string name="lblUpgrade">ارتقاء آگهی</string>
     <string name="messChooseUpgradeMethod">لطفا نوع ارتقاء را انتخاب نمایید</string>
     <string name="lblPayMethod">روش پرداخت</string>
