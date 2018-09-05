@@ -65,6 +65,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.view.animation.Transformation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView.OnItemClickListener;
@@ -920,6 +921,22 @@ public class PubProc {
             return str;
         }
 
+        public static String getAlpha(int digit){
+            switch (digit){
+                case 1 : return "اول";
+                case 2 : return "دوم";
+                case 3 : return "سوم";
+                case 4 : return "چهارم";
+                case 5 : return "پنجم";
+                case 6 : return "ششم";
+                case 7 : return "هفتم";
+                case 8 : return "هشتم";
+                case 9 : return "نهم";
+                case 10: return "دهم";
+                default: return "";
+            }
+        }
+
         public static String ClearSigns(String str) {
             str = str.replaceAll("[,.٬]", "");
             str = PersianNumToEnglish(str);
@@ -1565,6 +1582,20 @@ public class PubProc {
             toast.show();
         }
 
+        public static void ToastMessage(int message, int Lenght) {
+            View layout = mInflater.inflate(R.layout.toast,
+                    (ViewGroup) mActivity.findViewById(R.id.toast_layout_root));
+
+            TextView text = layout.findViewById(R.id.text);
+            text.setText(message);
+
+            Toast toast = new Toast(mContext);
+            toast.setDuration(Lenght);
+            toast.setView(layout);
+            HandleViewAndFontSize.overrideFonts(mContext, layout);
+            toast.show();
+        }
+
         public static void SnackMessage(String mMessage, String btnTitle, View.OnClickListener onClickListener) {
             Snackbar.make(mActivity.findViewById(android.R.id.content),mMessage,
                     Snackbar.LENGTH_INDEFINITE).setAction(btnTitle, onClickListener).show();
@@ -1901,6 +1932,22 @@ public class PubProc {
             mShowMessageDialog.show();
         }
 
+        public static void ShowMessageDialog(Activity activity, String Message, int MessageType, String BtnCaption, String OptionCaption, String Option2Caption,
+                                             View.OnClickListener BtnOkClick, View.OnClickListener OptionOnClick, View.OnClickListener Option2OnClick) {
+            mShowMessageDialog = new ShowMessageDialogClass(activity, Message, MessageType, BtnCaption, OptionCaption, Option2Caption,
+                    BtnOkClick, OptionOnClick, Option2OnClick);
+            mShowMessageDialog.setCancelable(false);
+            mShowMessageDialog.show();
+        }
+
+        public static void ShowMessageDialog(Activity activity, String Message, int MessageType, String BtnCaption, int OptionImage,
+
+                                             View.OnClickListener BtnOkClick, View.OnClickListener OptionOnClick) {
+            mShowMessageDialog = new ShowMessageDialogClass(activity, Message, MessageType, BtnCaption, OptionImage, BtnOkClick, OptionOnClick);
+            mShowMessageDialog.setCancelable(false);
+            mShowMessageDialog.show();
+        }
+
         public static void ShowMessageDialog(Activity activity, String Message, int MessageType) {
             View.OnClickListener ocl = new View.OnClickListener() {
                 @Override
@@ -2057,14 +2104,26 @@ public class PubProc {
             shake.setRepeatCount(2);
             v.startAnimation(shake);
         }
+        
+        public static void RotateAnimation(View v, int duration){
+
+            Animation anim = new RotateAnimation(0, 360,
+                    Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            anim.setDuration(duration);
+            anim.setRepeatCount(Animation.INFINITE);
+            anim.setInterpolator(new LinearInterpolator());
+
+            v.startAnimation(anim);
+        }
 
         public static void GlowAnimation(View v, int duration, int startOffset) {
-            AlphaAnimation blinkanimation = new AlphaAnimation(1, 0.5f);
+            AlphaAnimation blinkanimation = new AlphaAnimation(1, 0.2f);
             blinkanimation.setDuration(duration);
             blinkanimation.setInterpolator(new LinearInterpolator());
             blinkanimation.setRepeatCount(Animation.INFINITE);
             blinkanimation.setRepeatMode(Animation.REVERSE);
             blinkanimation.setStartOffset(startOffset);
+            v.setLayerType(View.LAYER_TYPE_HARDWARE, null);
             v.setAnimation(blinkanimation);
             v.startAnimation(blinkanimation);
         }

@@ -1,13 +1,13 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "28.0.0-rc1"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.2"
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         buildConfigField "long", "TS", System.currentTimeMillis() + "L"
@@ -36,17 +36,21 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile 'junit:junit:4.12'
-    compile group: 'commons-io', name: 'commons-io', version: '2.0.1'
-    compile 'com.android.support:appcompat-v7:27.1.1'
-    compile 'com.android.support:multidex:1.0.1'
-    compile 'com.android.support:design:27.1.1'
-    compile 'com.android.support:support-v4:27.1.1'
+    compile group: 'commons-io', name: 'commons-io', version: '2.4'
+    compile 'com.android.support:appcompat-v7:28.0.0-rc02'
+    compile 'com.github.AndroidDeveloperLB:AutoFitTextView:4'
+    compile 'com.android.support:design:28.0.0-rc01'
+    compile 'com.android.support:multidex:1.0.3'
+    compile 'com.android.support:support-v4:28.0.0-rc02'
+    compile 'com.intuit.sdp:sdp-android:1.0.5'
+    compile 'com.intuit.ssp:ssp-android:1.0.5'
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.android.support:recyclerview-v7:27.1.1'
+    compile 'com.android.support:recyclerview-v7:28.0.0-rc02'
     compile 'com.pnikosis:materialish-progress:1.7'
     compile 'com.wrapp.floatlabelededittext:library:0.0.6'
     compile 'com.github.rey5137:material:1.2.4'
     compile 'com.getkeepsafe.taptargetview:taptargetview:1.4.1'
+    compile 'com.mohamadamin:persianmaterialdatetimepicker:1.2.1'
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.multidots:fingerprint-auth:1.0.1'
     compile 'com.github.yalantis:ucrop:2.2.1'

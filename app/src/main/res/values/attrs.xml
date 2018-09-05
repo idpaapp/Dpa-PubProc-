@@ -9,6 +9,14 @@
         <attr name="HasIconColor" format="boolean"/>
     </declare-styleable>
 
+    <declare-styleable name="DrawableTextView">
+        <attr name="titleText" format="string"/>
+        <attr name="iconDrawable" format="reference"/>
+        <attr name="textFontSize" format="dimension"/>
+        <attr name="textFontColor" format="color"/>
+        <attr name="iconColor" format="color"/>
+    </declare-styleable>
+
     <declare-styleable name="MyRadioGroup">
         <attr name="caption" format="string"/>
         <attr name="textSize" format="integer"/>

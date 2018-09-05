@@ -9,9 +9,10 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import dpa_me.com.dpa_pubproc.CustomViews.PushImageView;
 import dpa_me.com.dpa_pubproc.CustomViews.StrokeTextView;
-import dpa_me.com.dpa_pubproc.R;
 import dpa_me.com.dpa_pubproc.Units.PubProc;
+import dpa_me.com.dpa_pubproc.R;
 
 public class ShowMessageDialogClass extends Dialog implements
         View.OnClickListener {
@@ -20,15 +21,19 @@ public class ShowMessageDialogClass extends Dialog implements
     public Dialog d;
     public View yes;
     public View BtnOption;
+    public View BtnOption2;
     StrokeTextView title;
     public ImageView Logo;
     public TextView TxtMessage;
     private String mMessage = "";
     private String mBtnCaption = "";
     private String mOptionCaption = "";
+    private String mOption2Caption = "";
+    private int mOptionImage;
     public int mMessageType = 0;
     private View.OnClickListener mBtnOnClick;
     private View.OnClickListener mOptionOnClick;
+    private View.OnClickListener mOption2OnClick;
 
     public ShowMessageDialogClass(Activity a, String Message, int MessageType, View.OnClickListener BtnOnClick) {
         super(a);
@@ -59,11 +64,39 @@ public class ShowMessageDialogClass extends Dialog implements
         mMessageType = MessageType;
     }
 
+    public ShowMessageDialogClass(Activity a, String Message, int MessageType, String BtnCaption, String OptionCaption, String Option2Caption,
+                                  View.OnClickListener BtnOnClick, View.OnClickListener OptionOnClick, View.OnClickListener Option2OnClick) {
+        super(a);
+        mMessage = Message;
+        mBtnOnClick = BtnOnClick;
+        mBtnCaption = BtnCaption;
+        mOptionCaption = OptionCaption;
+        mOption2Caption = Option2Caption;
+        mOptionOnClick = OptionOnClick;
+        mOption2OnClick = Option2OnClick;
+        mMessageType = MessageType;
+    }
+
+    public ShowMessageDialogClass(Activity a, String Message, int MessageType, String BtnCaption, int OptionImage,
+                                  View.OnClickListener BtnOnClick, View.OnClickListener OptionOnClick) {
+        super(a);
+        mMessage = Message;
+        mBtnOnClick = BtnOnClick;
+        mBtnCaption = BtnCaption;
+        mOptionImage = OptionImage;
+        mOptionOnClick = OptionOnClick;
+        mMessageType = MessageType;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.showmessagedialog);
+        if (!mOption2Caption.equals(""))
+            setContentView(R.layout.showmessagedialog_opt2);
+        else
+            setContentView(R.layout.showmessagedialog);
+
         getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
         getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         setCancelable(false);
@@ -88,9 +121,20 @@ public class ShowMessageDialogClass extends Dialog implements
             ((StrokeTextView) BtnOption).setText(mOptionCaption);
         }
 
+        if (yes instanceof PushImageView) {
+            ((PushImageView) BtnOption).setImageResource(mOptionImage);
+        }
+
         if (!mOptionCaption.equals("")) {
             BtnOption.setVisibility(View.VISIBLE);
             yes.setVisibility(View.VISIBLE);
+        }
+
+        if (!mOption2Caption.equals("")) {
+            BtnOption2 = findViewById(R.id.btn_Option_2);
+            BtnOption2.setOnClickListener(mOption2OnClick);
+            BtnOption2.setVisibility(View.VISIBLE);
+            ((StrokeTextView) BtnOption2).setText(mOption2Caption);
         }
 
         Logo = findViewById(R.id.Logo);
@@ -122,7 +166,7 @@ public class ShowMessageDialogClass extends Dialog implements
                     break;
                 }
             }
-        } else {
+        } else if (yes instanceof TextView){
             switch (mMessageType) {
                 case 1: {
                     yes.setBackgroundResource(R.color.OKColor);
@@ -137,6 +181,30 @@ public class ShowMessageDialogClass extends Dialog implements
                 case 3: {
                     yes.setBackgroundResource(R.color.WarningColor);
                     Logo.setImageResource(R.drawable.warning);
+                    break;
+                }
+            }
+        }else if (yes instanceof PushImageView){
+            title = findViewById(R.id.title);
+            View btn_close = findViewById(R.id.btn_close);
+            btn_close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    yes.callOnClick();
+                }
+            });
+
+            switch (mMessageType) {
+                case 1: {
+                    title.setText(getContext().getString(R.string.app_name));
+                    break;
+                }
+                case 2: {
+                    title.setText(getContext().getString(R.string.messError));
+                    break;
+                }
+                case 3: {
+                    title.setText(getContext().getString(R.string.messWarning));
                     break;
                 }
             }

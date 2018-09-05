@@ -24,4 +24,8 @@
     <color name="RadioTintColor">#FF4081</color>
     <color name="TextColorLight">#ffffff</color>
     <color name="TextColorMediumLight">#887e7e7e</color>
+
+    <color name="mdtp_accent_color">#c15f5f</color>
+    <color name="mdtp_accent_color_dark">#c15f5f</color>
+
 </resources>

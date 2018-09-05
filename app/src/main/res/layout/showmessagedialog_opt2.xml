@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <dpa_me.com.dpa_pubproc.CustomViews.StrokeTextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:stCaption="@string/app_name"
+        app:stStorkWidth="10"
+        app:stStrokeColor="@color/primary_text"
+        app:stTextColor="@color/light_text"/>
+
+    <dpa_me.com.dpa_pubproc.CustomViews.PushImageView
+        android:id="@+id/btn_close"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:id="@+id/txt_dia"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Do you realy want to exit ?"
+        android:textColor="@color/primary_text"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:id="@+id/lay_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <dpa_me.com.dpa_pubproc.CustomViews.StrokeTextView
+                android:id="@+id/btn_Option"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="gone"
+                app:stScaleType="fitCenter"
+                app:stCaption="خیر"
+                app:stStorkWidth="6"
+                app:stStrokeColor="@color/primary_text"
+                app:stTextColor="@color/light_text"
+                app:stxOffset="0.93"
+                app:styOffset="0.93" />
+
+            <dpa_me.com.dpa_pubproc.CustomViews.StrokeTextView
+                android:id="@+id/btn_yes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:stCaption="بلی"
+                app:stStorkWidth="6"
+                app:stStrokeColor="@color/primary_text"
+                app:stTextColor="@color/light_text"
+                app:stxOffset="0.93"
+                app:styOffset="0.92" />
+        </LinearLayout>
+
+        <dpa_me.com.dpa_pubproc.CustomViews.StrokeTextView
+            android:layout_weight="1"
+            android:id="@+id/btn_Option_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:stxOffset="0.93"
+            app:styOffset="0.93" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

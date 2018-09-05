@@ -39,6 +39,20 @@
             android:layout_marginTop="5sp">
 
             <TextView
+                android:id="@+id/btn_Option_2"
+                android:layout_width="match_parent"
+                android:layout_height="30sp"
+                android:background="@color/divider"
+                android:layout_marginRight="10sp"
+                android:text="تایید"
+                android:visibility="gone"
+                android:layout_weight="1"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:textColor="@color/TextColorLight"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/btn_Option"
                 android:layout_width="match_parent"
                 android:layout_height="30sp"

@@ -1,4 +1,7 @@
 <resources>
+    <string name="mdtp_ok">تایید</string>
+    <string name="mdtp_cancel">انصراف</string>
+
     <string name="app_name">Dpa_PubProc</string>
     <string name="NULL"></string>
     <string name="UserName">نام کاربری</string>

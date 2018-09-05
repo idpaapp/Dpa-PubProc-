@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.SystemClock;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -226,7 +227,9 @@ public class StrokeTextView extends FrameLayout {
                                         mLastClickTime = SystemClock.elapsedRealtime();
                                         mLastClickedID = getId();
                                     }
-                                }catch (Exception ex) {}
+                                }catch (Exception ex) {
+                                    Log.d("AppException", ex.toString());
+                                }
                         }
                         return true;
                     }

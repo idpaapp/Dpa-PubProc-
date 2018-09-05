@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:id="@+id/Icon"
+        android:src="@drawable/camblack"
+        android:scaleType="fitCenter"
+        android:layout_alignParentLeft="true" />
+
+    <com.lb.auto_fit_textview.AutoResizeTextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_20sdp"
+        android:textSize="@dimen/_13ssp"
+        android:text="salam"
+        android:layout_marginLeft="5sp"
+        android:textColor="@color/primary_text"
+        android:id="@+id/Label"
+        android:textStyle="bold"
+        android:gravity="center_vertical|left"
+        android:layout_toRightOf="@+id/Icon"/>
+</RelativeLayout>
