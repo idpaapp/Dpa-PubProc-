@@ -45,7 +45,7 @@ public class MyRadioButton extends FrameLayout {
             textView.setText(attributes.getString(R.styleable.MyRadioGroup_caption));
             textView.setTextColor(attributes.getColor(R.styleable.MyRadioGroup_textColor,
                     getResources().getColor(R.color.primary_text)));
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, attributes.getInt(R.styleable.MyRadioGroup_textSize, 14));
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, attributes.getInt(R.styleable.MyRadioGroup_mrgtextSize, 14));
             attributes.recycle();
         }
         addView(view);

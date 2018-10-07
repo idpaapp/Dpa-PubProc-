@@ -1882,7 +1882,7 @@ public class PubProc {
 
         public static void ShowProgressDialog(Activity activity) {
             if (mProgressDialog == null)
-                mProgressDialog = new MyProgressDialog(activity, mContext.getResources().getString(R.string.messPleaseWait));
+                mProgressDialog = new MyProgressDialog(activity, activity.getResources().getString(R.string.messPleaseWait));
 
             if (!mProgressDialog.isShowing()) {
                 try {
@@ -2109,6 +2109,25 @@ public class PubProc {
 
             Animation anim = new RotateAnimation(0, 360,
                     Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+            anim.setDuration(duration);
+            anim.setRepeatCount(Animation.INFINITE);
+            anim.setInterpolator(new LinearInterpolator());
+
+            v.startAnimation(anim);
+        }
+
+        public static void CirclePathAnimation(View v, int duration, int degree){
+            Animation anim = new CircleAnimation(v, degree);
+            anim.setDuration(duration);
+            anim.setRepeatCount(Animation.INFINITE);
+            anim.setRepeatMode(Animation.RESTART);
+            v.startAnimation(anim);
+        }
+
+        public static void RotateAnimation(View v, int duration, float pivote){
+
+            Animation anim = new RotateAnimation(0, 360,
+                    Animation.RELATIVE_TO_SELF, pivote, Animation.RELATIVE_TO_SELF, pivote);
             anim.setDuration(duration);
             anim.setRepeatCount(Animation.INFINITE);
             anim.setInterpolator(new LinearInterpolator());

@@ -80,7 +80,7 @@ public class MyRadioGroup extends FrameLayout {
             textView.setText(attributes.getString(R.styleable.MyRadioGroup_caption));
             textView.setTextColor(attributes.getColor(R.styleable.MyRadioGroup_textColor,
                     getResources().getColor(R.color.primary_text)));
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, attributes.getInt(R.styleable.MyRadioGroup_textSize, 14));
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, attributes.getInt(R.styleable.MyRadioGroup_mrgtextSize, 14));
             if (attributes.getInt(R.styleable.MyRadioGroup_groupOrientation, 0) == 0)
                 radioGroup.setOrientation(LinearLayout.HORIZONTAL);
             else
