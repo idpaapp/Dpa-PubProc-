@@ -25,6 +25,19 @@ public class QuestionDialogClass extends Dialog implements
     public ImageView Logo;
     private View.OnClickListener mBtnOnClick;
 
+    public interface IOpration{
+        void onBtnYesClick();
+        void onBtnNoClick();
+    }
+
+    private QuestionDialogClass.IOpration onOpration = null;
+
+    public QuestionDialogClass setOnClickBtns(IOpration onOpration){
+        this.onOpration = onOpration;
+        return this;
+    }
+
+
     public QuestionDialogClass(Activity a, String Message, View.OnClickListener BtnOnClick) {
         super(a);
         mMessage = Message;

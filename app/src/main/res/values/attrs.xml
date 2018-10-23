@@ -15,6 +15,11 @@
         <attr name="textFontSize" format="dimension"/>
         <attr name="textFontColor" format="color"/>
         <attr name="iconColor" format="color"/>
+        <attr name="icnSize" format="integer">
+            <flag name="large" value="2"/>
+            <flag name="medium" value="1"/>
+            <flag name="small" value="0"/>
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="MyRadioGroup">

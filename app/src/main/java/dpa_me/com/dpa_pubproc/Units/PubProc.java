@@ -1717,14 +1717,14 @@ public class PubProc {
 
         public static Context SetActivityParams(final AppCompatActivity activity, int ActivityLayout,
                                                 boolean HasDrawerLayout, String Title) {
-            /*Thread.setDefaultUncaughtExceptionHandler (new Thread.UncaughtExceptionHandler()
+            Thread.setDefaultUncaughtExceptionHandler (new Thread.UncaughtExceptionHandler()
             {
                 @Override
                 public void uncaughtException (Thread thread, Throwable e)
                 {
                     PubProc.HandleApplication.handleUncaughtException (activity, thread, e);
                 }
-            });*/
+            });
 
             activity.setContentView(ActivityLayout);
             activity.setTitle("");
@@ -2136,7 +2136,7 @@ public class PubProc {
         }
 
         public static void GlowAnimation(View v, int duration, int startOffset) {
-            AlphaAnimation blinkanimation = new AlphaAnimation(1, 0.2f);
+            AlphaAnimation blinkanimation = new AlphaAnimation(0.5f, 0.2f);
             blinkanimation.setDuration(duration);
             blinkanimation.setInterpolator(new LinearInterpolator());
             blinkanimation.setRepeatCount(Animation.INFINITE);

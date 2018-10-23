@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -37,16 +36,21 @@ public class DrawableTextView extends FrameLayout {
 
     private void init(AttributeSet attrs) {
         View view = inflate(getContext(), R.layout.drawable_textview, null);
-        textView = view.findViewById(R.id.Label);
-        imageview = view.findViewById(R.id.Icon);
-
         TypedArray attributes = getContext().obtainStyledAttributes(attrs, R.styleable.DrawableTextView);
         if (attrs != null) {
+
+            switch (attributes.getInt(R.styleable.DrawableTextView_icnSize, 1)){
+                case 0: view = inflate(getContext(), R.layout.drawable_textview_small, null); break;
+                case 1: view = inflate(getContext(), R.layout.drawable_textview, null); break;
+                case 2: view = inflate(getContext(), R.layout.drawable_textview_large, null); break;
+            }
+
+            textView = view.findViewById(R.id.Label);
+            imageview = view.findViewById(R.id.Icon);
+
             textView.setText(attributes.getString(R.styleable.DrawableTextView_titleText));
             textView.setTextColor(attributes.getColor(R.styleable.DrawableTextView_textFontColor,
                     getResources().getColor(R.color.primary_text)));
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, attributes.getInt(R.styleable.DrawableTextView_textFontColor, 14));
-
             imageview.setImageDrawable(attributes.getDrawable(R.styleable.DrawableTextView_iconDrawable));
         }
 
