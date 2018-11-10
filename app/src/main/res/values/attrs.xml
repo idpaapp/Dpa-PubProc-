@@ -94,5 +94,16 @@
         <attr name="plyPivote" format="float"/>
     </declare-styleable>
 
-
+    <declare-styleable name="MyDialog">
+        <attr name="mdCaption" format="string"/>
+        <attr name="mdBtns" format="integer">
+            <flag name="close" value="0"/>
+            <flag name="back" value="1"/>
+            <flag name="ok" value="2"/>
+        </attr>
+        <attr name="mdHeaderType" format="integer">
+            <flag name="small_header" value="0"/>
+            <flag name="big_header" value="1"/>
+        </attr>
+    </declare-styleable>
 </resources>

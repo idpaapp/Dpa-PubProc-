@@ -2,18 +2,8 @@
 <resources>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="primary">#03A9F4</color>
-    <color name="primary_dark">#03051e</color>
-    <color name="primary_light">#B3E5FC</color>
-    <color name="accent">#FF4081</color>
-    <color name="primary_text">#212121</color>
-    <color name="secondary_text">#757575</color>
-    <color name="light_text">#ffffff</color>
-    <color name="icons">#FFFFFF</color>
     <color name="MenuColor">#fafafa</color>
-    <color name="divider">#BDBDBD</color>
     <color name="divider_medium">#dedede</color>
-    <color name="divider_light">#f8f6f7</color>
     <color name="TransBackColor">#55f8f6f7</color>
     <color name="OKColor">#66cc9a</color>
     <color name="CancelColor">#d24135</color>
@@ -24,6 +14,69 @@
     <color name="RadioTintColor">#FF4081</color>
     <color name="TextColorLight">#ffffff</color>
     <color name="TextColorMediumLight">#887e7e7e</color>
+    <color name="DialogHeaderTextColor">#000000</color>
+
+    <color name="back_color_dark">#e6c785</color>
+    <color name="back_color_medium">#e6c58f</color>
+    <color name="back_color_medium_light">#e9ce8d</color>
+    <color name="back_color_light">#f8e8b0</color>
+    <color name="back_color_border_light">#bc9967</color>
+    <color name="header_color_dark">#a87437</color>
+    <color name="header_color_medium">#f3dfa4</color>
+    <color name="header_color_light">#f8e8b0</color>
+    <color name="header_color_inactive">#f5f0dd</color>
+    <color name="header_color_inactive_light">#f7f6f4</color>
+    <color name="header_color_light_trans">#f8e8b0</color>
+    <color name="border_color_outer">#d2c28a</color>
+    <color name="border_color_inner">#b88741</color>
+    <color name="border_color_in_dark">#ecddb3</color>
+    <color name="border_color_in_light">#fdf3d4</color>
+
+    <color name="dialog_header_Darrk">#1c6b65</color>
+
+
+    <color name="border_color_deep_dark">#977246</color>
+    <color name="border_color_dark">#d2a36c</color>
+    <color name="border_color_medium">#dcb380</color>
+    <color name="border_color_light">#e0bc8a</color>
+
+    <color name="primary">#0d1458</color>
+    <color name="primary_dark">#03051e</color>
+    <color name="primary_light">#e0bc8a</color>
+    <color name="accent">#9E9E9E</color>
+    <color name="primary_text">#30200f</color>
+    <color name="primary_text_trans">#c9212121</color>
+    <color name="secondary_text">#493219</color>
+    <color name="hint_text">#cacaca</color>
+    <color name="light_text">#fbfbfb</color>
+    <color name="icons">#fbfbfb</color>
+    <color name="white">#ffffff</color>
+    <color name="back_light">#f4f4f4</color>
+    <color name="back_light_trans">#78f4f4f4</color>
+    <color name="divider">#BDBDBD</color>
+    <color name="divider_light">#d9d9d9</color>
+    <color name="primary_alpha">#BBb52838</color>
+    <color name="timer_color">#de6401</color>
+    <color name="shape_color">#636a7c</color>
+    <color name="shape_color_medium">#8a90a1</color>
+    <color name="shape_color_light">#d4d6db</color>
+    <color name="win_color">#b0da00</color>
+    <color name="draw_color">#ffe500</color>
+    <color name="lose_color">#c20a10</color>
+    <color name="defer_color">#ffa200</color>
+    <color name="box_dark_color">#d0d0cc</color>
+    <color name="box_my_color">#c1eacc</color>
+    <color name="box_my_light_color">#a1cdb4</color>
+    <color name="box_dark_color_border">#7e94a9</color>
+    <color name="box_medium_color">#f4f4f0</color>
+    <color name="box_medium_color_border">#646464</color>
+    <color name="box_light_color">#f4f4f0</color>
+    <color name="box_light_color_border">#f4f4f0</color>
+    <color name="splash_back">#0d2381</color>
+    <color name="BackNavColor">#b4334353</color>
+    <color name="BackNavColorSelected">#b4637688</color>
+    <color name="important_text">#b52838</color>
+    <color name="trans_black">#90000000</color>
 
     <color name="mdtp_accent_color">#c15f5f</color>
     <color name="mdtp_accent_color_dark">#c15f5f</color>
