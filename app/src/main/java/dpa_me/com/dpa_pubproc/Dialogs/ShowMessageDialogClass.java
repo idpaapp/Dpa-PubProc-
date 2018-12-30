@@ -4,10 +4,15 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.IntDef;
+import android.support.annotation.IntRange;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 import dpa_me.com.dpa_pubproc.CustomViews.PushImageView;
 import dpa_me.com.dpa_pubproc.CustomViews.StrokeTextView;
@@ -34,6 +39,7 @@ public class ShowMessageDialogClass extends Dialog implements
     private View.OnClickListener mBtnOnClick;
     private View.OnClickListener mOptionOnClick;
     private View.OnClickListener mOption2OnClick;
+
 
     public ShowMessageDialogClass(Activity a, String Message, int MessageType, View.OnClickListener BtnOnClick) {
         super(a);

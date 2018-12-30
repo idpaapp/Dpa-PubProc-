@@ -1604,13 +1604,10 @@ public class PubProc {
 
         public static void handleUncaughtException(Activity a, Thread thread, Throwable e) {
             e.printStackTrace();
-
             Intent intent = new Intent();
-            intent.setAction("com.dpa_me.salona.SEND_LOG");
             intent.putExtra("Error", e.toString());
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             a.startActivity(intent);
-
             System.exit(1);
         }
 
@@ -1717,14 +1714,15 @@ public class PubProc {
 
         public static Context SetActivityParams(final AppCompatActivity activity, int ActivityLayout,
                                                 boolean HasDrawerLayout, String Title) {
-            Thread.setDefaultUncaughtExceptionHandler (new Thread.UncaughtExceptionHandler()
-            {
-                @Override
-                public void uncaughtException (Thread thread, Throwable e)
-                {
-                    PubProc.HandleApplication.handleUncaughtException (activity, thread, e);
-                }
-            });
+            //TODO:setDefaultUncaughtExceptionHandler
+//            Thread.setDefaultUncaughtExceptionHandler (new Thread.UncaughtExceptionHandler()
+//            {
+//                @Override
+//                public void uncaughtException (Thread thread, Throwable e)
+//                {
+//                    PubProc.HandleApplication.handleUncaughtException (activity, thread, e);
+//                }
+//            });
 
             activity.setContentView(ActivityLayout);
             activity.setTitle("");
