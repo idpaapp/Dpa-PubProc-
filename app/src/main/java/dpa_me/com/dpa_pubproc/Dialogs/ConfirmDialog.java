@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -74,8 +75,15 @@ public class ConfirmDialog extends Dialog {
 
         ((TextView) findViewById(R.id.txt_dia)).setText(mMessage);
 
-        ((StrokeTextView) findViewById(R.id.btn_yes)).setText(mYes);
-        ((StrokeTextView) findViewById(R.id.btn_no)).setText(mNo);
+        if (findViewById(R.id.btn_yes) instanceof Button){
+            ((Button) findViewById(R.id.btn_yes)).setText(mYes);
+            ((Button) findViewById(R.id.btn_no)).setText(mNo);
+        }
+
+        if (findViewById(R.id.btn_yes) instanceof StrokeTextView) {
+            ((StrokeTextView) findViewById(R.id.btn_yes)).setText(mYes);
+            ((StrokeTextView) findViewById(R.id.btn_no)).setText(mNo);
+        }
 
         findViewById(R.id.btn_yes).setOnClickListener(new View.OnClickListener() {
             @Override

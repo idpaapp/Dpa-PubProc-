@@ -138,7 +138,7 @@
     <string name="lblAdvTitle">عنوان آگهی</string>
     <string name="lblFromPrice">شروع قیمت از (تومان)</string>
     <string name="lblToPrice">تا قیمت (تومان)</string>
-    <string name="lblTel">تلفن ثابت</string>
+    <string name="lblTel">تلفن ثابت :</string>
     <string name="txtAcceptTerms">شرایط و قوانین را مطالعه کرده و قبول دارم</string>
     <string name="lblInsertAdv">ثبت آکهی</string>
     <string name="lblFinalAdv">ثبت نهایی آگهی</string>
@@ -299,7 +299,7 @@
     <string name="messNoEmailSetting">تنظیمات ارسال ایمیل بر روی دستگاه شما یافت نشد</string>
     <string name="lblEmailSend">ارسال ایمیل.</string>
     <string name="lblLicences">گواهی ها و مدارک کسب شده</string>
-    <string name="lblAddress">آدرس</string>
+    <string name="lblAddress">آدرس :</string>
     <string name="lbloMatter">مهم نیست</string>
     <string name="lblPartTime">پاره وقت</string>
     <string name="lblFullTime">تمام وقت</string>
