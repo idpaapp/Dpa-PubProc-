@@ -91,17 +91,14 @@
     <string name="lblSend">ارسال</string>
     <string name="txtOk">تایید</string>
     <string name="txtSubmit">ثبت</string>
-
     <string name="lblConfirmPassword">تایید کلمه عبور</string>
     <string name="lblSignup">ثبت نام</string>
     <string name="lblSignupBefore">قبلا ثبت نام کرده اید؟</string>
-
     <string name="txtNotRegisterYet">هنوز ثبت نام نکرده اید؟</string>
     <string name="txtSignUp">ثبت نام کنید</string>
     <string name="txtForgetPassword">کلمه عبور خود را فراموش کرده اید؟</string>
     <string name="txtRecoverpass">بازیابی کلمه عبور</string>
     <string name="TxtTypeComment">نظر خود را بنویسید...	</string>
-
     <string name="txtRegisterFrom">عضویت از </string>
     <string name="txtActiveIn">فعال در زمینه </string>
     <string name="txtRetry">تلاش مجدد</string>
@@ -112,7 +109,6 @@
     <string name="lblAtachment">فایل ضمیمه</string>
     <string name="lblGallry">گالری</string>
     <string name="camera">دوربین</string>
-
     <string name="lblHours">ساعت</string>
     <string name="lblMins">دقیقه</string>
     <string name="lblDay">روز</string>
