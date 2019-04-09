@@ -73,4 +73,10 @@ public class MyProgressDialog extends Dialog {
         PubProc.HandleViewAndFontSize.overrideFonts(getContext(), findViewById(R.id.MainLayout));
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        activity.finish();
+    }
 }
