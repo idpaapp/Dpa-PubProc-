@@ -4,6 +4,7 @@
 
     <color name="MenuColor">#fafafa</color>
     <color name="divider_medium">#dedede</color>
+    <color name="divider_dark">#999999</color>
     <color name="TransBackColor">#55f8f6f7</color>
     <color name="OKColor">#66cc9a</color>
     <color name="CancelColor">#d24135</color>

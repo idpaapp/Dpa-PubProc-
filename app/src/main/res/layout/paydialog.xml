@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/divider_light"
+              android:layout_width="match_parent"
+              android:padding="5sp"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:layout_gravity="right"
+        android:background="@color/primary_dark"
+        android:textColor="@color/light_text"
+        android:textSize="14sp"
+        android:layout_marginBottom="5sp"
+        android:text="@string/lblPay"
+        android:gravity="center"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/divider_light"
+        android:layout_margin="5sp"
+        android:paddingBottom="5sp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/primary_text"
+            android:id="@+id/pdTitle"
+            android:text="@string/txtBuyText"
+            android:gravity="right"
+            android:layout_marginRight="5sp"
+            android:layout_marginLeft="5sp"
+            android:layout_marginTop="5sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="@color/primary_text"
+            android:id="@+id/pdBuyDesc"
+            android:gravity="fill_vertical|right"
+            android:layout_alignTop="@+id/pdimgBuyDesc"
+            android:layout_toLeftOf="@+id/pdimgBuyDesc"
+            android:layout_marginRight="2sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="25sp"
+            android:textSize="13sp"
+            android:gravity="center_vertical|right"
+            android:textColor="@color/primary_text"
+            android:id="@+id/pdBuyBudget"
+            android:layout_alignTop="@+id/pdimgBudget"
+            android:layout_alignBottom="@+id/pdimgBudget"
+            android:layout_toLeftOf="@+id/pdimgBudget"
+            android:layout_marginRight="3sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lblToman"
+            android:textColor="@color/primary_text"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:layout_alignTop="@+id/pdBuyBudget"
+            android:layout_alignBottom="@+id/pdBuyBudget"
+            android:layout_toLeftOf="@+id/pdBuyBudget"
+            android:layout_marginRight="5sp"/>
+
+        <ImageView
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:id="@+id/pdimgBuyDesc"
+            android:src="@drawable/shop"
+            android:scaleType="fitCenter"
+            android:tint="@color/primary"
+            android:layout_below="@+id/pdTitle"
+            android:layout_alignRight="@+id/pdTitle"
+            android:layout_marginBottom="10sp" />
+
+        <ImageView
+            android:layout_width="25sp"
+            android:layout_height="25sp"
+            android:id="@+id/pdimgBudget"
+            android:src="@drawable/budget"
+            android:tint="@color/primary"
+            android:layout_below="@+id/pdimgBuyDesc"
+            android:layout_alignRight="@+id/pdimgBuyDesc" />
+
+        <ImageView
+            android:id="@+id/pdimgShetab"
+            android:layout_width="35sp"
+            android:layout_height="35sp"
+            android:src="@drawable/shetab"
+            android:layout_marginTop="5sp"
+            android:layout_alignRight="@+id/pdimgBudget"
+            android:layout_below="@+id/pdBuyBudget"/>
+
+        <ImageView
+            android:layout_width="35sp"
+            android:layout_height="35sp"
+            android:padding="5sp"
+            android:src="@drawable/mellat"
+            android:layout_marginTop="5sp"
+            android:layout_toLeftOf="@+id/pdimgShetab"
+            android:layout_below="@+id/pdBuyBudget"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/divider_light"
+        android:orientation="horizontal"
+        android:padding="5sp" >
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="100sp"
+            android:layout_height="30sp"
+            android:layout_marginRight="5sp"
+            android:background="@drawable/backbtnempty"
+            android:clickable="true"
+            android:text="انصراف"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="@color/primary_text"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_GotoBank"
+            android:layout_width="140sp"
+            android:layout_height="30sp"
+            android:background="@drawable/backbtnfill"
+            android:clickable="true"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:text="@string/lblGotoBank"
+            android:textColor="@color/light_text"
+            android:textColorLink="@color/primary"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

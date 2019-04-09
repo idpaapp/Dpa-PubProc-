@@ -2,12 +2,9 @@ package dpa_me.com.dpa_pubproc.Dialogs;
 
 import android.app.DialogFragment;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +13,7 @@ import android.widget.LinearLayout;
 
 import dpa_me.com.dpa_pubproc.Activitys.CameraTempActivity;
 import dpa_me.com.dpa_pubproc.R;
+import dpa_me.com.dpa_pubproc.Units.PubProc;
 
 public class CameraOrGallryDialog extends DialogFragment  {
 
@@ -110,6 +108,7 @@ public class CameraOrGallryDialog extends DialogFragment  {
                         }
                     })
                     .setMaxCropSize(mX, mY)
+                    .setImageName(getString(R.string.app_name) + PubProc.HandleApplication.CreateRandomNumber())
                     .start();
             LockOpr = false;
         }
@@ -131,6 +130,7 @@ public class CameraOrGallryDialog extends DialogFragment  {
                     })
 
                     .setMaxCropSize(mX, mY)
+                    .setImageName(getString(R.string.app_name) + PubProc.HandleApplication.CreateRandomNumber())
                     .start();
             LockOpr = false;
         }

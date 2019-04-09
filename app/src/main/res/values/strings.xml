@@ -271,7 +271,7 @@
     <string name="lblFinalCheck">تایید نهایی پروژه</string>
     <string name="messMobileIsInvalid">تلفن همراه وارد شده نا معتبر می باشد</string>
     <string name="messItemDublicated">مورد انتخابی تکراری می باشد</string>
-    <string name="messPasswordMust8Chars">کلمه عبور باید حداقل 8 کاراکتر یا عدد باشد</string>
+    <string name="messPasswordMust6Chars">کلمه عبور باید حداقل 6 کاراکتر یا عدد باشد</string>
     <string name="messPurcheseBid">برای ارسال پیشنهاد ابتدا باید بسته خریداری نمایید</string>
     <string name="lblNotFinalConfirmed">عدم تایید تحویل</string>
     <string name="messPleaseContactUsIfNotConfirmed">تایید نهایی برای اتمام پروژه انجام نشد. در صورت عدم توافق با آگهی دهنده با پشتیبانی بگول تماس حاصل فرمایید.</string>

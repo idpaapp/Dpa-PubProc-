@@ -1,5 +1,6 @@
 package dpa_me.com.dpa_pubproc.Activitys;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -251,7 +252,11 @@ public class CameraTempActivity extends AppCompatActivity {
 
         public void pickPhotoWithPermission() {
             if (ContextCompat.checkSelfPermission(activity, android.Manifest.permission.READ_EXTERNAL_STORAGE) !=
-                    PackageManager.PERMISSION_GRANTED) {
+                    PackageManager.PERMISSION_GRANTED ||
+                    ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
+                            PackageManager.PERMISSION_GRANTED ||
+                    ContextCompat.checkSelfPermission(activity, Manifest.permission.CAMERA) !=
+                            PackageManager.PERMISSION_GRANTED) {
 
                 Snackbar.make(activity.findViewById(android.R.id.content),
                         "لطفا اجازه دسترسی به حافظه را بدهید",
@@ -260,7 +265,9 @@ public class CameraTempActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 ActivityCompat.requestPermissions(activity,
-                                        new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
+                                        new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                                Manifest.permission.CAMERA},
                                         REQUEST_CODE_IMAGE_PERMISSION);
                             }
                         }).show();

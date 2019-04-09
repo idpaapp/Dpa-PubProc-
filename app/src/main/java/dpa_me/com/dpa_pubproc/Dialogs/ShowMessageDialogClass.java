@@ -148,7 +148,7 @@ public class ShowMessageDialogClass extends Dialog implements
             btn_close.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    yes.callOnClick();
+                    dismiss();
                 }
             });
 
@@ -190,7 +190,7 @@ public class ShowMessageDialogClass extends Dialog implements
             btn_close.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    yes.callOnClick();
+                    dismiss();
                 }
             });
 

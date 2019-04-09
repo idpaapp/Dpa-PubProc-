@@ -40,7 +40,7 @@ public class BuyDescriptionActivity extends AppCompatActivity {
     }
 
     private void getZarrinResponse(){
-        Uri data = getIntent().getData();
+        final Uri data = getIntent().getData();
         ZarinPal.getPurchase(BuyDescriptionActivity.this).verificationPayment(data, new OnCallbackVerificationPaymentListener() {
             @Override
             public void onCallbackResultVerificationPayment(boolean isPaymentSuccess, String refID, final PaymentRequest paymentRequest) {
@@ -51,8 +51,9 @@ public class BuyDescriptionActivity extends AppCompatActivity {
 
                 if (isPaymentSuccess) {
                     PubProc.InvoiceNo = refID;
+                    PubProc.Authority = paymentRequest.getAuthority();
                     PubProc.HandleApplication.ShowProgressDialog(BuyDescriptionActivity.this);
-                    paymentRequest.getAfterRun().run();
+                    paymentRequest.getOpration().onBankResponsed();
                     PubProc.ResultOfPayment = 100;
                 } else {
                     abdImgIcon.setImageResource(R.drawable.response_error);

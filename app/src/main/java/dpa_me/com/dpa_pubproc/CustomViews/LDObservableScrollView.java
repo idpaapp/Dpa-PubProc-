@@ -1,10 +1,11 @@
 package dpa_me.com.dpa_pubproc.CustomViews;
 
 import android.content.Context;
+import android.support.v4.widget.NestedScrollView;
 import android.util.AttributeSet;
 import android.widget.ScrollView;
 
-public class LDObservableScrollView extends ScrollView {
+public class LDObservableScrollView extends NestedScrollView {
 
     private LDObservableScrollViewListener scrollViewListener = null;
 

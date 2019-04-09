@@ -51,6 +51,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.DisplayMetrics;
@@ -139,6 +140,7 @@ import static android.widget.ImageView.ScaleType.CENTER_CROP;
 public class PubProc {
     public static final int MY_PERMISSIONS = 123;
 
+    public static String ApplicationID;
     public static MenuAdapter adapter;
     public static int MessageCount;
     public static int NotificationCount;
@@ -147,6 +149,7 @@ public class PubProc {
     public static String UserImage;
     public static String LocalPath;
     public static String InvoiceNo;
+    public static String Authority;
     public static List<String> LastTitle;
     public static int xdpi = 0;
     public static int ydpi = 0;
@@ -173,6 +176,7 @@ public class PubProc {
     public static QuestionDialogClass mQuestionDialog;
     public static ShowMessageDialogClass mShowMessageDialog;
     public static String HttpRootAddress;
+    public static String HttpHostAddress;
     public static String UserName;
     public static String UserTitleStr;
     public static boolean OnBtnClicked;
@@ -921,19 +925,30 @@ public class PubProc {
             return str;
         }
 
-        public static String getAlpha(int digit){
-            switch (digit){
-                case 1 : return "اول";
-                case 2 : return "دوم";
-                case 3 : return "سوم";
-                case 4 : return "چهارم";
-                case 5 : return "پنجم";
-                case 6 : return "ششم";
-                case 7 : return "هفتم";
-                case 8 : return "هشتم";
-                case 9 : return "نهم";
-                case 10: return "دهم";
-                default: return "";
+        public static String getAlpha(int digit) {
+            switch (digit) {
+                case 1:
+                    return "اول";
+                case 2:
+                    return "دوم";
+                case 3:
+                    return "سوم";
+                case 4:
+                    return "چهارم";
+                case 5:
+                    return "پنجم";
+                case 6:
+                    return "ششم";
+                case 7:
+                    return "هفتم";
+                case 8:
+                    return "هشتم";
+                case 9:
+                    return "نهم";
+                case 10:
+                    return "دهم";
+                default:
+                    return "";
             }
         }
 
@@ -1036,9 +1051,9 @@ public class PubProc {
             return BCrypt.checkpw(Str, HashPass);
         }
 
-        public static String if1Char(String chr){
+        public static String if1Char(String chr) {
             if (chr.length() == 1)
-                return "0"+chr;
+                return "0" + chr;
             else return chr;
         }
 
@@ -1357,7 +1372,7 @@ public class PubProc {
             }
         }
 
-        public static void SendNotification(Service a, String Meessage, String Title, Class DistinationActivity,int larg_image, int image, Runnable AfterRun) {
+        public static void SendNotification(Service a, String Meessage, String Title, Class DistinationActivity, int larg_image, int image, Runnable AfterRun) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 createChannel(a);
             }
@@ -1406,7 +1421,7 @@ public class PubProc {
                     } else {
                         try {
                             DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-                            HttpPost httppost = new HttpPost(HttpRootAddress + "api/verify_number.php");
+                            HttpPost httppost = new HttpPost(HttpRootAddress + "api/send_sms.php");
                             List<NameValuePair> nameValuePairs = new ArrayList<>(2);
                             nameValuePairs.add(new BasicNameValuePair("PHONE_NUABMER", PhoneNumber));
                             nameValuePairs.add(new BasicNameValuePair("RCODE", RCode));
@@ -1440,6 +1455,31 @@ public class PubProc {
                         REQUEST_EXTERNAL_STORAGE
                 );
             }
+        }
+
+        public static boolean isTextViewEllipsized(TextView textview){
+            boolean result = false;
+
+            Layout layout = textview.getLayout();
+            if(layout != null) {
+                int lines = layout.getLineCount();
+                if(lines > 0) {
+                    int ellipsisCount = layout.getEllipsisCount(lines-1);
+                    if ( ellipsisCount > 0) {
+                        result = true;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public static boolean isLanguageEn(String string) {
+            String pattern = "^[A-Za-z0-9. ]+$";
+            if (string.matches(pattern))
+                return true;
+            else
+                return false;
         }
 
         public static void DownloadFile(final String DownloadUrl, final String fileName, final Runnable runnable) {
@@ -1597,7 +1637,9 @@ public class PubProc {
         }
 
         public static void SnackMessage(String mMessage, String btnTitle, View.OnClickListener onClickListener) {
-            Snackbar.make(mActivity.findViewById(android.R.id.content),mMessage,
+            View view = mActivity.findViewById(android.R.id.content);
+            HandleViewAndFontSize.overrideFonts(mActivity, view);
+            Snackbar.make(view, mMessage,
                     Snackbar.LENGTH_INDEFINITE).setAction(btnTitle, onClickListener).show();
 
         }
@@ -1717,14 +1759,14 @@ public class PubProc {
 
         public static Context SetActivityParams(final AppCompatActivity activity, int ActivityLayout,
                                                 boolean HasDrawerLayout, String Title) {
-            Thread.setDefaultUncaughtExceptionHandler (new Thread.UncaughtExceptionHandler()
-            {
-                @Override
-                public void uncaughtException (Thread thread, Throwable e)
-                {
-                    PubProc.HandleApplication.handleUncaughtException (activity, thread, e);
-                }
-            });
+//            Thread.setDefaultUncaughtExceptionHandler (new Thread.UncaughtExceptionHandler()
+//            {
+//                @Override
+//                public void uncaughtException (Thread thread, Throwable e)
+//                {
+//                    PubProc.HandleApplication.handleUncaughtException (activity, thread, e);
+//                }
+//            });
 
             activity.setContentView(ActivityLayout);
             activity.setTitle("");
@@ -1889,7 +1931,7 @@ public class PubProc {
                     mProgressDialog = new MyProgressDialog(activity, mContext.getResources().getString(R.string.messPleaseWait));
                     mProgressDialog.setCancelable(false);
                     mProgressDialog.show();
-                }catch (Exception ex){
+                } catch (Exception ex) {
 
                 }
             }
@@ -2104,8 +2146,8 @@ public class PubProc {
             shake.setRepeatCount(2);
             v.startAnimation(shake);
         }
-        
-        public static void RotateAnimation(View v, int duration){
+
+        public static void RotateAnimation(View v, int duration) {
 
             Animation anim = new RotateAnimation(0, 360,
                     Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
@@ -2116,7 +2158,7 @@ public class PubProc {
             v.startAnimation(anim);
         }
 
-        public static void CirclePathAnimation(View v, int duration, int degree){
+        public static void CirclePathAnimation(View v, int duration, int degree) {
             Animation anim = new CircleAnimation(v, degree);
             anim.setDuration(duration);
             anim.setRepeatCount(Animation.INFINITE);
@@ -2124,7 +2166,7 @@ public class PubProc {
             v.startAnimation(anim);
         }
 
-        public static void RotateAnimation(View v, int duration, float pivote){
+        public static void RotateAnimation(View v, int duration, float pivote) {
 
             Animation anim = new RotateAnimation(0, 360,
                     Animation.RELATIVE_TO_SELF, pivote, Animation.RELATIVE_TO_SELF, pivote);

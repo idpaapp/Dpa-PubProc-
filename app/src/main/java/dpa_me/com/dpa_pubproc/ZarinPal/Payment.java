@@ -12,8 +12,9 @@ class Payment {
     protected static final String CALLBACK_URL_PARAMS = "CallbackURL";
     protected static final String MOBILE_PARAMS       = "Mobile";
     protected static final String EMAIL_PARAMS        = "Email";
+    protected static final String USERID_PARAMS       = "UserId";
     protected static final String AUTHORITY_PARAMS    = "Authority";
     protected static final String OPTION_PARAMS       = "Option";
-    protected static final String RUNNABLE_PARAMS       = "Runnable";
+    protected static final String RUNNABLE_PARAMS     = "Runnable";
 
 }

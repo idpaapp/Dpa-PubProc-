@@ -7,14 +7,14 @@ import retrofit2.http.POST;
 
 public interface RetroInterface {
     @Headers({"Content-Type: application/json"})
-    @POST("http://footballica.ir/server_handling/api/routing.php")
+    @POST("http://restook.ir/server_handling/api/routing.php")
     Call<AppAddressModel> getAddress_1(@Body String body);
 
     @Headers({"Content-Type: application/json"})
-    @POST("http://restook.ir/server_handling/api/routing.php")
+    @POST("http://footballica.ir/server_handling/api/routing.php")
     Call<AppAddressModel> getAddress_2(@Body String body);
 
     @Headers({"Content-Type: application/json"})
-    @POST("http://begool.ir/server_handling/api/routing.php")
+    @POST("http://volcan.ir/server_handling/api/routing.php")
     Call<AppAddressModel> getAddress_3(@Body String body);
 }

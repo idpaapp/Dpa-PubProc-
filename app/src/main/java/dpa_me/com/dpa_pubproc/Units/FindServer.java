@@ -9,6 +9,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
+import static dpa_me.com.dpa_pubproc.Units.PubProc.ApplicationID;
+
 public class FindServer {
 
     public FindServer(){
@@ -31,7 +33,7 @@ public class FindServer {
     public void setServerName(){
         final JSONObject app_json = new JSONObject();
         try {
-            app_json.put("app_id", "0c63f2aba12d4756a23f47b0161d3594");
+            app_json.put("app_id", ApplicationID);
         }catch (Exception ignored){}
 
         final RetroInterface retroInterface = new Retrofit.Builder().baseUrl("http://restook.ir").

@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import dpa_me.com.dpa_pubproc.Dialogs.PaymentDialog;
+
 public class PaymentRequest extends Payment {
 
 
@@ -13,11 +15,12 @@ public class PaymentRequest extends Payment {
     private long   amount;
     private String mobile;
     private String email;
+    private int userid;
     private String description;
     private String callBackURL;
     private String authority;
     private String option;
-    private Runnable afterRun;
+    private PaymentDialog.IOpration Opration;
 
 
     @NonNull
@@ -31,8 +34,8 @@ public class PaymentRequest extends Payment {
     }
 
     @NonNull
-    public void setAfterRun(Runnable afterRun) {
-        this.afterRun = afterRun;
+    public void setAfterRun(PaymentDialog.IOpration opration) {
+        this.Opration = opration;
     }
 
     @NonNull
@@ -60,6 +63,11 @@ public class PaymentRequest extends Payment {
         this.email = email;
     }
 
+    @Nullable
+    public void setUserid(int userId) {
+        this.userid = userId;
+    }
+
     public String getCallBackURL() {
         return callBackURL;
     }
@@ -80,14 +88,17 @@ public class PaymentRequest extends Payment {
         return description;
     }
 
-    public Runnable getAfterRun() {
-        return afterRun;
+    public PaymentDialog.IOpration getOpration() {
+        return Opration;
     }
 
     public String getMobile() {
         return mobile;
     }
 
+    public int getUserId() {
+        return userid;
+    }
 
     public String getMerchantID() {
         return merchantID;
@@ -109,8 +120,9 @@ public class PaymentRequest extends Payment {
         jsonObject.put(CALLBACK_URL_PARAMS, getCallBackURL());
         jsonObject.put(MOBILE_PARAMS, getMobile());
         jsonObject.put(EMAIL_PARAMS, getEmail());
+        jsonObject.put(USERID_PARAMS, getUserId());
         jsonObject.put(OPTION_PARAMS, getOption());
-        jsonObject.put(RUNNABLE_PARAMS, getAfterRun());
+        jsonObject.put(RUNNABLE_PARAMS, getOpration());
         return jsonObject;
     }
 

@@ -40,6 +40,12 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="PriceRateView">
+        <attr name="prv_TextSize" format="integer"/>
+        <attr name="prv_SelectedColor" format="color"/>
+        <attr name="prv_UnSelectedColor" format="color"/>
+    </declare-styleable>
+
     <declare-styleable name="MyCheckBox">
         <attr name="txtcaption" format="string"/>
         <attr name="txttextSize" format="integer"/>
