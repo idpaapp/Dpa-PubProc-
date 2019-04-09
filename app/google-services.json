@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "294072114834",
+    "firebase_url": "https://footballica-683ae.firebaseio.com",
+    "project_id": "footballica-683ae",
+    "storage_bucket": "footballica-683ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:294072114834:android:0859eba8fd70e42e",
+        "android_client_info": {
+          "package_name": "com.dpa_me.adelica"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "294072114834-eqbln5fh1c03hphdapo803u1032f9moc.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "294072114834-eqbln5fh1c03hphdapo803u1032f9moc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXuMRxJJfGprPRxGU1DBeATnv-nrEtGpQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
