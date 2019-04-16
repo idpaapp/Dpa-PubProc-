@@ -75,6 +75,7 @@
     <string name="lblBids">پیشنهادات</string>
     <string name="lblSubmitBids">ثبت پیشنهاد</string>
     <string name="lblEmail">پست الکترونیک</string>
+    <string name="lblEmailOpt">پست الکترونیک (اختیاری)</string>
     <string name="lblPassword">کلمه عبور</string>
     <string name="lblName">نام و نام خانوادگی</string>
     <string name="lblMobile">تلفن همراه</string>

@@ -906,6 +906,17 @@ public class PubProc {
             imgProfile.setOnClickListener(imgProfileClick);
         }
 
+        public static void CreateDrawerMenu(ListView mDrawerList, int HeaderLayout) {
+            HandleViewAndFontSize.overrideFonts(mContext, mDrawerList);
+            mDrawerList.setOnItemClickListener(menuOnItemClickListener);
+
+            View rowView = mInflater.inflate(HeaderLayout, null);
+
+            adapter = new MenuAdapter(mContext, SignedOutMenu);
+            mDrawerList.addHeaderView(rowView);
+            mDrawerList.setAdapter(adapter);
+        }
+
     }
 
     public static class HandleString {
@@ -1793,6 +1804,49 @@ public class PubProc {
 
                 HandleMainMenu.CreateDrawerMenu(mDrawerLayout, mDrawerList, null, activity.getSupportActionBar());
             }
+
+            ImageView BackBtn = activity.findViewById(R.id.BackBtn);
+            if (BackBtn != null) {
+                BackBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        activity.finish();
+                    }
+                });
+            }
+
+            TextView mTitle = activity.findViewById(R.id.Title);
+            if (mTitle != null) {
+                mTitle.setText(Title);
+            }
+            return mContext;
+        }
+
+        public static Context SetActivityParams(final AppCompatActivity activity, int ActivityLayout,
+                                                int HeaderLayout, String Title) {
+
+            activity.setContentView(ActivityLayout);
+            activity.setTitle("");
+            DisplayMetrics metrics = new DisplayMetrics();
+            activity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+            mContext = activity.getApplicationContext();
+            mInflater = (LayoutInflater) PubProc.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            xdpi = metrics.widthPixels;
+            ydpi = metrics.heightPixels;
+            DisplayDensityDpi = metrics.density;
+            LastTitle = new ArrayList<String>();
+            mFragmentManager = activity.getSupportFragmentManager();
+            mMainFragmentManager = activity.getSupportFragmentManager();
+            mActivity = activity;
+            MainTypeFace = Typeface.createFromAsset(activity.getAssets(), "BTrafcBd.ttf");
+            if (activity.getSupportActionBar() != null)
+                activity.getSupportActionBar().hide();
+
+            mDrawerLayout = activity.findViewById(R.id.drawer_layout);
+            mDrawerList = activity.findViewById(R.id.left_drawer);
+
+            HandleMainMenu.CreateDrawerMenu(mDrawerList, HeaderLayout);
 
             ImageView BackBtn = activity.findViewById(R.id.BackBtn);
             if (BackBtn != null) {

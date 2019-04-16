@@ -42,6 +42,7 @@
     <color name="border_color_light">#e0bc8a</color>
 
     <color name="primary">#0d1458</color>
+    <color name="colorPrimary">#0d1458</color>
     <color name="primary_dark">#03051e</color>
     <color name="primary_light">#e0bc8a</color>
     <color name="accent">#9E9E9E</color>

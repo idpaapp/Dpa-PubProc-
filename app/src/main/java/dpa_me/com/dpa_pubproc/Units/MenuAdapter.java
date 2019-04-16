@@ -36,9 +36,6 @@ public class MenuAdapter extends ArrayAdapter<MenuModel> {
                 ImageView imgView = rowView.findViewById(R.id.item_icon);
                 TextView titleView = rowView.findViewById(R.id.item_title);
 
-                titleView.setTextColor(context.getResources().getColor(R.color.primary_text));
-                imgView.setColorFilter(getContext().getResources().getColor(R.color.primary_text));
-
                 if (!modelsArrayList.get(position).isEnabled()) {
                     titleView.setTextColor(context.getResources().getColor(R.color.secondary_text));
                     imgView.setColorFilter(getContext().getResources().getColor(R.color.secondary_text));
