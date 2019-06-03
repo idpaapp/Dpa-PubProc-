@@ -31,9 +31,9 @@ public class RectangleRelativeLayout extends FrameLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, ((widthMeasureSpec/3)*2));
+        super.onMeasure(widthMeasureSpec, ((widthMeasureSpec/5)*3));
         int size = MeasureSpec.getSize(widthMeasureSpec);
-        setMeasuredDimension(size, ((size/3)*2));
+        setMeasuredDimension(size, ((size/5)*3));
     }
 
 }

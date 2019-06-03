@@ -30,15 +30,39 @@ public class ConfirmDialog extends Dialog {
         mNo = getContext().getString(R.string.lblNo);
     }
 
-    public interface IOpration{
+    public ConfirmDialog(@NonNull Context context, String message) {
+        super(context);
+        mYes = getContext().getString(R.string.lblYes);
+        mNo = getContext().getString(R.string.lblNo);
+        this.mMessage = message;
+    }
+
+    public ConfirmDialog(@NonNull Context context, int message) {
+        super(context);
+        mYes = getContext().getString(R.string.lblYes);
+        mNo = getContext().getString(R.string.lblNo);
+        this.mMessage = getContext().getString(message);
+    }
+
+    public interface IOpration {
         void onBtnYesClick();
         void onBtnNoClick();
     }
 
+    public interface IYesOpration{
+        void onBtnYesClick();
+    }
+
     private IOpration onOpration = null;
+    private IYesOpration onYesOpration = null;
 
     public ConfirmDialog setOnClickBtns(IOpration onOpration){
         this.onOpration = onOpration;
+        return this;
+    }
+
+    public ConfirmDialog setOnClickBtns(IYesOpration onOpration){
+        this.onYesOpration = onOpration;
         return this;
     }
 
@@ -99,6 +123,9 @@ public class ConfirmDialog extends Dialog {
             public void onClick(View v) {
                 if (onOpration != null)
                     onOpration.onBtnYesClick();
+
+                if (onYesOpration != null)
+                    onYesOpration.onBtnYesClick();
 
                 if (!avoidDismiss)
                     dismiss();

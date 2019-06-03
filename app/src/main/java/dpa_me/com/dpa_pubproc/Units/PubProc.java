@@ -24,6 +24,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Typeface;
@@ -60,6 +61,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -187,6 +190,8 @@ public class PubProc {
     public static ArrayList<MenuModel> SignedOutMenu;
     public static OnItemClickListener menuOnItemClickListener;
     public static View.OnClickListener imgProfileClick;
+
+    public static boolean HideStatusBar = false;
 
     public static SQLiteDatabase mDatabaseRead;
     public static SQLiteDatabase mDatabaseWrite;
@@ -920,6 +925,18 @@ public class PubProc {
     }
 
     public static class HandleString {
+        public static String implode(String separator, ArrayList<String> data) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < data.size() - 1; i++) {
+                if (!data.get(i).matches(" *")) {
+                    sb.append(data.get(i));
+                    sb.append(separator);
+                }
+            }
+            sb.append(data.get(data.size() - 1).trim());
+            return sb.toString();
+        }
+
         public static String SimpleHash(String AStr, int Mode) {
             ApiCrypter apiCrypter = new ApiCrypter();
             try {
@@ -1797,6 +1814,17 @@ public class PubProc {
             if (activity.getSupportActionBar() != null)
                 activity.getSupportActionBar().hide();
 
+            if (HideStatusBar) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                    activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                }
+
+                activity.getWindow().getDecorView().setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            }
+
             if (HasDrawerLayout) {
                 mDrawerLayout = activity.findViewById(R.id.drawer_layout);
                 mDrawerList = activity.findViewById(R.id.left_drawer);
@@ -1842,6 +1870,17 @@ public class PubProc {
             MainTypeFace = Typeface.createFromAsset(activity.getAssets(), "BTrafcBd.ttf");
             if (activity.getSupportActionBar() != null)
                 activity.getSupportActionBar().hide();
+
+            if (HideStatusBar) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                    activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                }
+
+                activity.getWindow().getDecorView().setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            }
 
             mDrawerLayout = activity.findViewById(R.id.drawer_layout);
             mDrawerList = activity.findViewById(R.id.left_drawer);
@@ -1894,6 +1933,18 @@ public class PubProc {
             if (activity.getSupportActionBar() != null)
                 activity.getSupportActionBar().hide();
 
+
+            if (HideStatusBar) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                    activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                }
+
+                activity.getWindow().getDecorView().setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            }
+
             if (HasDrawerLayout) {
                 mDrawerLayout = activity.findViewById(R.id.drawer_layout);
                 mDrawerList = activity.findViewById(R.id.left_drawer);
@@ -1938,6 +1989,18 @@ public class PubProc {
             MainTypeFace = Typeface.createFromAsset(mContext.getAssets(), "BTrafcBd.ttf");
             if (activity.getSupportActionBar() != null)
                 activity.getSupportActionBar().hide();
+
+
+            if (HideStatusBar) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                    activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                }
+
+                activity.getWindow().getDecorView().setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            }
 
             if (HasDrawerLayout) {
                 mDrawerLayout = activity.findViewById(R.id.drawer_layout);
@@ -2185,6 +2248,25 @@ public class PubProc {
             bmp.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
             byte[] byteArray = byteArrayOutputStream.toByteArray();
             return Base64.encodeToString(byteArray, Base64.DEFAULT);
+        }
+
+        public static String toBase64(String url) {
+            try {
+                URL imageUrl = new URL(url);
+                URLConnection ucon = imageUrl.openConnection();
+                InputStream is = ucon.getInputStream();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                byte[] buffer = new byte[1024];
+                int read = 0;
+                while ((read = is.read(buffer, 0, buffer.length)) != -1) {
+                    baos.write(buffer, 0, read);
+                }
+                baos.flush();
+                return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
         }
 
         public static String toBase64(Bitmap bitmap) {

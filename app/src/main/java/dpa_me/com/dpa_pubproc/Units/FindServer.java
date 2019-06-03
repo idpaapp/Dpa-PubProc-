@@ -2,6 +2,9 @@ package dpa_me.com.dpa_pubproc.Units;
 
 import org.json.JSONObject;
 
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,8 +39,13 @@ public class FindServer {
             app_json.put("app_id", ApplicationID);
         }catch (Exception ignored){}
 
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(100, TimeUnit.SECONDS)
+                .readTimeout(100,TimeUnit.SECONDS).build();
+
         final RetroInterface retroInterface = new Retrofit.Builder().baseUrl("http://restook.ir").
                 addConverterFactory(ScalarsConverterFactory.create()).
+                client(client).
                 addConverterFactory(GsonConverterFactory.create()).
                 build().create(RetroInterface.class);
 

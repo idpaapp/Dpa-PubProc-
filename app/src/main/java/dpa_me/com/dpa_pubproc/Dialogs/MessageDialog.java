@@ -119,6 +119,9 @@ public class MessageDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 onOptionOpration.onBtnClick();
+
+                if (!avoidDismiss)
+                    dismiss();
             }
         });
 
@@ -126,6 +129,9 @@ public class MessageDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 onOption2Opration.onBtnClick();
+
+                if (!avoidDismiss)
+                    dismiss();
             }
         });
 
