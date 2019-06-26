@@ -987,8 +987,6 @@ public class PubProc {
         }
 
         public static String PersianNumStrToEnglish(String number) {
-            number = number.replace(",", "").replace("٬", "").trim();
-
             final String arabic = "\u06f0\u06f1\u06f2\u06f3\u06f4\u06f5\u06f6\u06f7\u06f8\u06f9";
             int j = 0;
             char[] chars = new char[number.length()];
@@ -1008,7 +1006,6 @@ public class PubProc {
         }
 
         public static String PersianNumToEnglish(String number) {
-            number = number.replace(",", "").replace("٬", "").trim();
 
             final String arabic = "\u06f0\u06f1\u06f2\u06f3\u06f4\u06f5\u06f6\u06f7\u06f8\u06f9";
             int j = 0;
@@ -1881,11 +1878,6 @@ public class PubProc {
                         View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
             }
-
-            mDrawerLayout = activity.findViewById(R.id.drawer_layout);
-            mDrawerList = activity.findViewById(R.id.left_drawer);
-
-            HandleMainMenu.CreateDrawerMenu(mDrawerList, HeaderLayout);
 
             ImageView BackBtn = activity.findViewById(R.id.BackBtn);
             if (BackBtn != null) {

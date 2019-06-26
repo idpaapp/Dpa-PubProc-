@@ -79,6 +79,7 @@
     <color name="BackNavColorSelected">#b4637688</color>
     <color name="important_text">#b52838</color>
     <color name="trans_black">#90000000</color>
+    <color name="trans_black_dark">#bb000000</color>
 
     <color name="mdtp_accent_color">#c15f5f</color>
     <color name="mdtp_accent_color_dark">#c15f5f</color>
