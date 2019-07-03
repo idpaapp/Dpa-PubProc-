@@ -24,7 +24,6 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Typeface;
@@ -32,6 +31,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Environment;
@@ -61,7 +61,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -1482,15 +1481,15 @@ public class PubProc {
             }
         }
 
-        public static boolean isTextViewEllipsized(TextView textview){
+        public static boolean isTextViewEllipsized(TextView textview) {
             boolean result = false;
 
             Layout layout = textview.getLayout();
-            if(layout != null) {
+            if (layout != null) {
                 int lines = layout.getLineCount();
-                if(lines > 0) {
-                    int ellipsisCount = layout.getEllipsisCount(lines-1);
-                    if ( ellipsisCount > 0) {
+                if (lines > 0) {
+                    int ellipsisCount = layout.getEllipsisCount(lines - 1);
+                    if (ellipsisCount > 0) {
                         result = true;
                     }
                 }
@@ -2266,6 +2265,19 @@ public class PubProc {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
             byte[] byteArray = byteArrayOutputStream.toByteArray();
             return Base64.encodeToString(byteArray, Base64.DEFAULT);
+        }
+
+        public static String toBase64(Uri uri) {
+            try {
+                InputStream imageStream = mActivity.getContentResolver().openInputStream(uri);
+                Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+                return Base64.encodeToString(byteArray, Base64.DEFAULT);
+            } catch (Exception ex) {
+                return "";
+            }
         }
 
         public static void ShakeAnimation(View v, int duration) {
