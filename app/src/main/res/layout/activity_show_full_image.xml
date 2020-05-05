@@ -24,7 +24,7 @@
             android:layout_alignParentRight="true"
             android:gravity="center"/>
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:layout_width="40sp"
             android:layout_height="40sp"
             android:id="@+id/BackBtn"
@@ -37,7 +37,7 @@
             android:padding="8sp" />
     </RelativeLayout>
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/divider"

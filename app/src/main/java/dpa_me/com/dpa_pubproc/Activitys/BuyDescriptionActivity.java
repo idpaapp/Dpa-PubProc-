@@ -5,7 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
+import android.support.v7.widget.AppCompatImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,7 +25,7 @@ public class BuyDescriptionActivity extends AppCompatActivity {
     private TextView abdTxtDesc;
     private TextView abdTxtTitle;
     private TextView abdBtnOk;
-    private ImageView abdImgIcon;
+    private AppCompatImageView abdImgIcon;
     private RelativeLayout MainLayout;
 
     private void initViews(){

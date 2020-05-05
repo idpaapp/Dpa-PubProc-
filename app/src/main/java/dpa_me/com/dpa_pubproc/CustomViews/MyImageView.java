@@ -2,10 +2,10 @@ package dpa_me.com.dpa_pubproc.CustomViews;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.ImageView;
+import android.support.v7.widget.AppCompatImageView;
 
 
-public class MyImageView extends ImageView {
+public class MyImageView extends AppCompatImageView  {
 
 	public MyImageView(Context context, AttributeSet attrs) {
 		super(context, attrs);

@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+import android.support.v7.widget.AppCompatImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class MenuAdapter extends ArrayAdapter<MenuModel> {
             if(!modelsArrayList.get(position).isGroupHeader() && !modelsArrayList.get(position).isProfileImage()){
                 rowView = inflater.inflate(R.layout.menuitem, parent, false);
  
-                ImageView imgView = rowView.findViewById(R.id.item_icon);
+                AppCompatImageView imgView = rowView.findViewById(R.id.item_icon);
                 TextView titleView = rowView.findViewById(R.id.item_title);
 
                 if (!modelsArrayList.get(position).isEnabled()) {

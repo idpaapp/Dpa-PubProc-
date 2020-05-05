@@ -31,7 +31,7 @@
         android:textSize="30sp"
         android:padding="10sp"/>
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:layout_below="@+id/acs_lay_toolbar"
         android:id="@+id/backImage"
         android:layout_width="match_parent"

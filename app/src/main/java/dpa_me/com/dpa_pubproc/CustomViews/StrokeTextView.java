@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.support.v7.widget.AppCompatImageView;
 import android.widget.RelativeLayout;
 
 import dpa_me.com.dpa_pubproc.R;
@@ -27,8 +27,8 @@ import static dpa_me.com.dpa_pubproc.Units.PubProc.mLastClickTime;
 import static dpa_me.com.dpa_pubproc.Units.PubProc.mLastClickedID;
 
 public class StrokeTextView extends FrameLayout {
-    ImageView mainText;
-    ImageView strokeText;
+    AppCompatImageView mainText;
+    AppCompatImageView strokeText;
     RelativeLayout back_layout;
 
     float strokeWidth = 0.0f;
@@ -128,20 +128,20 @@ public class StrokeTextView extends FrameLayout {
 
             switch (attributes.getInt(R.styleable.StrokeTextView_stScaleType, 0)){
                 case 0:
-                    mainText.setScaleType(ImageView.ScaleType.CENTER);
-                    strokeText.setScaleType(ImageView.ScaleType.CENTER);
+                    mainText.setScaleType(AppCompatImageView.ScaleType.CENTER);
+                    strokeText.setScaleType(AppCompatImageView.ScaleType.CENTER);
                     break;
                 case 1:
-                    mainText.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                    strokeText.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                    mainText.setScaleType(AppCompatImageView.ScaleType.FIT_CENTER);
+                    strokeText.setScaleType(AppCompatImageView.ScaleType.FIT_CENTER);
                     break;
                 case 2:
-                    mainText.setScaleType(ImageView.ScaleType.FIT_END);
-                    strokeText.setScaleType(ImageView.ScaleType.FIT_END);
+                    mainText.setScaleType(AppCompatImageView.ScaleType.FIT_END);
+                    strokeText.setScaleType(AppCompatImageView.ScaleType.FIT_END);
                     break;
                 case 3:
-                    mainText.setScaleType(ImageView.ScaleType.FIT_START);
-                    strokeText.setScaleType(ImageView.ScaleType.FIT_START);
+                    mainText.setScaleType(AppCompatImageView.ScaleType.FIT_START);
+                    strokeText.setScaleType(AppCompatImageView.ScaleType.FIT_START);
                     break;
             }
 

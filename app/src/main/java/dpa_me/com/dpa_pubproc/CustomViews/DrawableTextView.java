@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.support.v7.widget.AppCompatImageView;
 
 import com.lb.auto_fit_textview.AutoResizeTextView;
 import com.squareup.picasso.Picasso;
@@ -17,7 +17,7 @@ import dpa_me.com.dpa_pubproc.R;
 
 public class DrawableTextView extends FrameLayout {
     AutoResizeTextView textView;
-    ImageView imageview;
+    AppCompatImageView imageview;
 
     public DrawableTextView(@NonNull Context context) {
         super(context);

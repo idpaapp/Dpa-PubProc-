@@ -6,14 +6,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.support.v7.widget.AppCompatImageView;
 import android.widget.TextView;
 
 import dpa_me.com.dpa_pubproc.R;
 import dpa_me.com.dpa_pubproc.Units.PubProc;
 
 public class About extends Fragment {
-    ImageView MenuButton;
+    AppCompatImageView MenuButton;
     int ImageResource;
     TextView todotype;
 
@@ -42,7 +42,7 @@ public class About extends Fragment {
                 todotype.setText(bundle.getString("mCaption"));
 
             if (bundle.getInt("imageResource") != 0)
-                ((ImageView) view.findViewById(R.id.backImage)).setImageResource(bundle.getInt("imageResource"));
+                ((AppCompatImageView) view.findViewById(R.id.backImage)).setImageResource(bundle.getInt("imageResource"));
         }
 
         return view;

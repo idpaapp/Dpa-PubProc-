@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.support.v7.widget.AppCompatImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -17,7 +17,7 @@ import dpa_me.com.dpa_pubproc.R;
 
 public class IconedLabelView extends FrameLayout {
     TextView textView;
-    ImageView imageview;
+    AppCompatImageView imageview;
 
     public IconedLabelView(Context context) {
         super(context);
@@ -36,8 +36,8 @@ public class IconedLabelView extends FrameLayout {
 
     private void init(AttributeSet attrs) {
         View view = inflate(getContext(), R.layout.iconedlabel, null);
-        textView = (TextView) view.findViewById(R.id.Label);
-        imageview = (ImageView) view.findViewById(R.id.Icon);
+        textView = view.findViewById(R.id.Label);
+        imageview = view.findViewById(R.id.Icon);
 
         TypedArray attributes = getContext().obtainStyledAttributes(attrs, R.styleable.IconedLabelView);
         if (attrs != null) {
@@ -59,7 +59,9 @@ public class IconedLabelView extends FrameLayout {
     public String getText() {
         return textView.getText().toString();
     }
-    public void setIcon(int resourceid){ imageview.setImageResource(resourceid);};
-    public void setIcon(Drawable drawable){ imageview.setImageDrawable(drawable);};
-    public void setIcon(String filename){Picasso.with(getContext()).load(filename).into(imageview);};
+    public void setIcon(int resourceid){ imageview.setImageResource(resourceid);}
+
+    public void setIcon(Drawable drawable){ imageview.setImageDrawable(drawable);}
+
+    public void setIcon(String filename){Picasso.with(getContext()).load(filename).into(imageview);}
 }

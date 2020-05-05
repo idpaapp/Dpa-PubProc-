@@ -19,7 +19,7 @@
         
     </LinearLayout>
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/md_img_header"
         android:layout_width="@dimen/_160sdp"
         android:layout_height="@dimen/_50sdp"

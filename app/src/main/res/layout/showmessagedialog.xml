@@ -81,7 +81,7 @@
 
     </RelativeLayout>
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/Logo"
         android:layout_width="50sp"
         android:layout_height="50sp"

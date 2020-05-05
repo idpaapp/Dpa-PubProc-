@@ -8,7 +8,7 @@ import android.support.annotation.IntDef;
 import android.support.annotation.IntRange;
 import android.view.View;
 import android.view.Window;
-import android.widget.ImageView;
+import android.support.v7.widget.AppCompatImageView;
 import android.widget.TextView;
 
 import java.lang.annotation.Retention;
@@ -28,7 +28,7 @@ public class ShowMessageDialogClass extends Dialog implements
     public View BtnOption;
     public View BtnOption2;
     StrokeTextView title;
-    public ImageView Logo;
+    public AppCompatImageView Logo;
     public TextView TxtMessage;
     private String mMessage = "";
     private String mBtnCaption = "";

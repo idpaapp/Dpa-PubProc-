@@ -73,6 +73,7 @@ import android.view.animation.Transformation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
+import android.support.v7.widget.AppCompatImageView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -1829,7 +1830,7 @@ public class PubProc {
                 HandleMainMenu.CreateDrawerMenu(mDrawerLayout, mDrawerList, null, activity.getSupportActionBar());
             }
 
-            ImageView BackBtn = activity.findViewById(R.id.BackBtn);
+            AppCompatImageView  BackBtn = activity.findViewById(R.id.BackBtn);
             if (BackBtn != null) {
                 BackBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1878,7 +1879,7 @@ public class PubProc {
                                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
             }
 
-            ImageView BackBtn = activity.findViewById(R.id.BackBtn);
+            AppCompatImageView BackBtn = activity.findViewById(R.id.BackBtn);
             if (BackBtn != null) {
                 BackBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1944,7 +1945,7 @@ public class PubProc {
                 HandleMainMenu.CreateDrawerMenu(mDrawerLayout, mDrawerList, null, activity.getSupportActionBar());
             }
 
-            ImageView BackBtn = activity.findViewById(R.id.BackBtn);
+            AppCompatImageView BackBtn = activity.findViewById(R.id.BackBtn);
             if (BackBtn != null) {
                 BackBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -2000,7 +2001,7 @@ public class PubProc {
                 HandleMainMenu.CreateDrawerMenu(mDrawerLayout, mDrawerList, null, activity.getSupportActionBar());
             }
 
-            ImageView BackBtn = activity.findViewById(R.id.BackBtn);
+            AppCompatImageView BackBtn = activity.findViewById(R.id.BackBtn);
             if (BackBtn != null) {
                 BackBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -2211,7 +2212,7 @@ public class PubProc {
             return anim;
         }
 
-        public static void applyGrayScale(ImageView imgview) {
+        public static void applyGrayScale(AppCompatImageView imgview) {
             ColorMatrix matrix = new ColorMatrix();
             matrix.setSaturation(0);
             ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
@@ -2225,10 +2226,26 @@ public class PubProc {
             return Base64.encodeToString(byteArray, Base64.DEFAULT);
         }
 
+        public static String toBase64(AppCompatImageView imageView, Bitmap.CompressFormat compressFormat) {
+            Bitmap bmp = PubProc.HandleImagesAndAnimations.drawableToBitmap(imageView.getDrawable());
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bmp.compress(compressFormat, 100, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream.toByteArray();
+            return Base64.encodeToString(byteArray, Base64.DEFAULT);
+        }
+
         public static String toBase64(ImageView imageView, Bitmap.CompressFormat compressFormat) {
             Bitmap bmp = PubProc.HandleImagesAndAnimations.drawableToBitmap(imageView.getDrawable());
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             bmp.compress(compressFormat, 100, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream.toByteArray();
+            return Base64.encodeToString(byteArray, Base64.DEFAULT);
+        }
+
+        public static String toBase64(AppCompatImageView imageView) {
+            Bitmap bmp = PubProc.HandleImagesAndAnimations.drawableToBitmap(imageView.getDrawable());
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bmp.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
             byte[] byteArray = byteArrayOutputStream.toByteArray();
             return Base64.encodeToString(byteArray, Base64.DEFAULT);
         }
@@ -2561,7 +2578,7 @@ public class PubProc {
             }
         }
 
-        public static void FetchDrawableOnThread(final int DrawableID, final ImageView imageView) {
+        public static void FetchDrawableOnThread(final int DrawableID, final AppCompatImageView imageView) {
             final Handler handler = new Handler() {
                 @Override
                 public void handleMessage(Message message) {
@@ -2582,7 +2599,7 @@ public class PubProc {
             thread.start();
         }
 
-        public static void FetchDrawableOnThread(final int DrawableID, final ImageView imageView, final int Width, final int Height) {
+        public static void FetchDrawableOnThread(final int DrawableID, final AppCompatImageView imageView, final int Width, final int Height) {
             final Handler handler = new Handler() {
                 @Override
                 public void handleMessage(Message message) {
@@ -2645,11 +2662,11 @@ public class PubProc {
             return byteArray;
         }
 
-        public static void SetImageViewPicToOtherImageView(ImageView SourceView, ImageView DestinationView) {
+        public static void SetImageViewPicToOtherImageView(AppCompatImageView SourceView, AppCompatImageView DestinationView) {
             DestinationView.setImageBitmap(((BitmapDrawable) SourceView.getDrawable()).getBitmap());
         }
 
-        public static void LoadImageInImageView(ImageView imageView, String imagePath, boolean HideOnNoImage, boolean ShowLogoNoImage) {
+        public static void LoadImageInImageView(AppCompatImageView imageView, String imagePath, boolean HideOnNoImage, boolean ShowLogoNoImage) {
             imagePath = HandleString.ISNULL(imagePath, "");
             if (imagePath.contains(".jpg") || imagePath.contains(".png")) {
                 Picasso.with(mContext).load(imagePath).into(imageView);
@@ -2663,11 +2680,26 @@ public class PubProc {
                 imageView.setImageResource(R.drawable.logo);
         }
 
-        public static void LoadImageInImageView(ImageView imageView, String imagePath, boolean HideOnNoImage, boolean ShowLogoNoImage, ImageView.ScaleType scaleType) {
+        public static void LoadImageInImageView(AppCompatImageView imageView, String imagePath, boolean HideOnNoImage, boolean ShowLogoNoImage, ImageView.ScaleType scaleType) {
             imagePath = HandleString.ISNULL(imagePath, "");
             if (imagePath.contains(".jpg") || imagePath.contains(".png")) {
                 Picasso.with(mContext).load(imagePath).into(imageView);
                 imageView.setScaleType(scaleType);
+                if (imageView.getTag() != null) {
+                    if (imageView.getTag().toString().equals("0")) imageView.setTag("1");
+                } else imageView.setTag("1");
+            } else if (HideOnNoImage)
+                imageView.setVisibility(View.GONE);
+            else if (ShowLogoNoImage)
+                imageView.setImageResource(R.drawable.logo);
+        }
+
+        public static void LoadBase64InImageView(AppCompatImageView imageView, String base64, boolean HideOnNoImage, boolean ShowLogoNoImage) {
+            if (!base64.equals("''") && !base64.equals("")) {
+                byte[] decodedString = Base64.decode(base64, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageView.setImageBitmap(decodedByte);
+                imageView.setScaleType(CENTER_CROP);
                 if (imageView.getTag() != null) {
                     if (imageView.getTag().toString().equals("0")) imageView.setTag("1");
                 } else imageView.setTag("1");
@@ -2692,6 +2724,17 @@ public class PubProc {
                 imageView.setImageResource(R.drawable.logo);
         }
 
+        public static void LoadBase64InImageView(AppCompatImageView imageView, String base64) {
+            if (!base64.equals("''") && !base64.equals("")) {
+                byte[] decodedString = Base64.decode(base64, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageView.setImageBitmap(decodedByte);
+                if (imageView.getTag() != null) {
+                    if (imageView.getTag().toString().equals("0")) imageView.setTag("1");
+                } else imageView.setTag("1");
+            }
+        }
+
         public static void LoadBase64InImageView(ImageView imageView, String base64) {
             if (!base64.equals("''") && !base64.equals("")) {
                 byte[] decodedString = Base64.decode(base64, Base64.DEFAULT);
@@ -2713,7 +2756,7 @@ public class PubProc {
             else return null;
         }
 
-        public static void LoadImageView(ImageView imageView, String base64OrImagePath, boolean HideOnNoImage, boolean ShowLogoNoImage) {
+        public static void LoadImageView(AppCompatImageView imageView, String base64OrImagePath, boolean HideOnNoImage, boolean ShowLogoNoImage) {
             if (base64OrImagePath.contains("http://") && !(base64OrImagePath.contains(".jpg") || base64OrImagePath.contains(".png"))) {
                 return;
             } else {
@@ -2722,6 +2765,21 @@ public class PubProc {
                 else
                     LoadBase64InImageView(imageView, base64OrImagePath, HideOnNoImage, ShowLogoNoImage);
             }
+        }
+
+        public static void LoadBase64InImageView(AppCompatImageView imageView, String base64, boolean HideOnNoImage, boolean ShowLogoNoImage, ImageView.ScaleType scaleType) {
+            if (!base64.equals("''") && !base64.equals("")) {
+                byte[] decodedString = Base64.decode(base64, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageView.setImageBitmap(decodedByte);
+                imageView.setScaleType(scaleType);
+                if (imageView.getTag() != null) {
+                    if (imageView.getTag().toString().equals("0")) imageView.setTag("1");
+                } else imageView.setTag("1");
+            } else if (HideOnNoImage)
+                imageView.setVisibility(View.GONE);
+            else if (ShowLogoNoImage)
+                imageView.setImageResource(R.drawable.logo);
         }
 
         public static void LoadBase64InImageView(ImageView imageView, String base64, boolean HideOnNoImage, boolean ShowLogoNoImage, ImageView.ScaleType scaleType) {

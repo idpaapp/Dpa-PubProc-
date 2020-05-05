@@ -7,7 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.ImageView;
+import android.support.v7.widget.AppCompatImageView;
 import android.widget.TextView;
 
 import dpa_me.com.dpa_pubproc.R;
@@ -22,7 +22,7 @@ public class QuestionDialogClass extends Dialog implements
     public View btn_close;
     public TextView TxtMessage;
     private String mMessage = "";
-    public ImageView Logo;
+    public AppCompatImageView Logo;
     private View.OnClickListener mBtnOnClick;
 
     public QuestionDialogClass(Activity a, String Message, View.OnClickListener BtnOnClick) {

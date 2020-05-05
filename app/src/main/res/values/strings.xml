@@ -103,7 +103,7 @@
     <string name="txtRegisterFrom">عضویت از </string>
     <string name="txtActiveIn">فعال در زمینه </string>
     <string name="txtRetry">تلاش مجدد</string>
-    <string name="txtUserName">نام کاربری</string>
+    lblSignIn
     <string name="lblBidTime">زمان پیشنهادی</string>
     <string name="lblBidBudget">مبلغ پیشنهادی (تومان)</string>
     <string name="lblBidEarnest">مبلغ بیعانه (تومان)</string>

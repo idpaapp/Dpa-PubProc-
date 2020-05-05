@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
+import android.support.v7.widget.AppCompatImageView;
 import android.widget.RelativeLayout;
 
 import com.squareup.picasso.Picasso;
@@ -26,8 +26,8 @@ public class ShowFullImage extends AppCompatActivity {
         if(bundle.getString("ImagePath")!= null)
             ImagePath = bundle.getString("ImagePath");
 
-        final RelativeLayout suMainMenuLyout = (RelativeLayout) findViewById(R.id.suMainMenuLyout);
-        final ImageView sfiImage = (ImageView) findViewById(R.id.sfiImage);
+        final RelativeLayout suMainMenuLyout = findViewById(R.id.suMainMenuLyout);
+        final AppCompatImageView sfiImage = findViewById(R.id.sfiImage);
         Picasso.with(mContext).load(ImagePath).into(sfiImage);
 
         assert sfiImage != null;

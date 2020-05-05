@@ -18,7 +18,7 @@ import static dpa_me.com.dpa_pubproc.Units.PubProc.mLastClickTime;
 import static dpa_me.com.dpa_pubproc.Units.PubProc.mLastClickedID;
 
 
-public class PushImageView extends android.support.v7.widget.AppCompatImageView {
+public class PushImageView extends android.support.v7.widget.AppCompatImageView   {
     private Context mContext;
     private float xOffset;
     private float yOffset;

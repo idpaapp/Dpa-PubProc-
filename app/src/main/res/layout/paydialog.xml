@@ -75,7 +75,7 @@
             android:layout_toLeftOf="@+id/pdBuyBudget"
             android:layout_marginRight="5sp"/>
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:layout_width="25sp"
             android:layout_height="25sp"
             android:id="@+id/pdimgBuyDesc"
@@ -86,7 +86,7 @@
             android:layout_alignRight="@+id/pdTitle"
             android:layout_marginBottom="10sp" />
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:layout_width="25sp"
             android:layout_height="25sp"
             android:id="@+id/pdimgBudget"
@@ -95,7 +95,7 @@
             android:layout_below="@+id/pdimgBuyDesc"
             android:layout_alignRight="@+id/pdimgBuyDesc" />
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:id="@+id/pdimgShetab"
             android:layout_width="35sp"
             android:layout_height="35sp"
@@ -104,7 +104,7 @@
             android:layout_alignRight="@+id/pdimgBudget"
             android:layout_below="@+id/pdBuyBudget"/>
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:layout_width="35sp"
             android:layout_height="35sp"
             android:padding="5sp"

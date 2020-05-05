@@ -12,7 +12,7 @@
         android:id="@+id/mcMenuLayout"
         android:background="@color/primary">
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:layout_width="40sp"
             android:layout_height="40sp"
             android:id="@+id/BackBtn"

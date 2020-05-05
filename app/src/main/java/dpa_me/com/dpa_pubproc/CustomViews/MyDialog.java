@@ -5,14 +5,14 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.support.v7.widget.AppCompatImageView;
 import android.widget.LinearLayout;
 
 import dpa_me.com.dpa_pubproc.R;
 
 public class MyDialog extends FrameLayout {
 
-    ImageView md_img_header;
+    AppCompatImageView md_img_header;
     LinearLayout md_lay_main;
     StrokeTextView md_txt_title;
     PushImageView md_btn_left;

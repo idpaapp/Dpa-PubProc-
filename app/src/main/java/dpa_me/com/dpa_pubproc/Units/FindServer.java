@@ -43,7 +43,7 @@ public class FindServer {
                 .connectTimeout(100, TimeUnit.SECONDS)
                 .readTimeout(100,TimeUnit.SECONDS).build();
 
-        final RetroInterface retroInterface = new Retrofit.Builder().baseUrl("http://restook.ir").
+        final RetroInterface retroInterface = new Retrofit.Builder().baseUrl("http://volcan.ir").
                 addConverterFactory(ScalarsConverterFactory.create()).
                 client(client).
                 addConverterFactory(GsonConverterFactory.create()).

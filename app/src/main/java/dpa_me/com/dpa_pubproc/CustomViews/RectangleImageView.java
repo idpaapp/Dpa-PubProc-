@@ -3,7 +3,7 @@ package dpa_me.com.dpa_pubproc.CustomViews;
 import android.content.Context;
 import android.util.AttributeSet;
 
-public class RectangleImageView extends android.support.v7.widget.AppCompatImageView {
+public class RectangleImageView extends android.support.v7.widget.AppCompatImageView   {
 
     public RectangleImageView(Context context) {
         super(context);

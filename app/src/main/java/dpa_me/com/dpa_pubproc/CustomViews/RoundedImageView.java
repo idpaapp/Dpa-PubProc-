@@ -8,12 +8,12 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
-import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatImageView  ;
 import android.util.AttributeSet;
 
 import dpa_me.com.dpa_pubproc.R;
 
-public class RoundedImageView extends AppCompatImageView {
+public class RoundedImageView extends AppCompatImageView   {
 
 	private int borderWidth = 1;
 	private int viewWidth;

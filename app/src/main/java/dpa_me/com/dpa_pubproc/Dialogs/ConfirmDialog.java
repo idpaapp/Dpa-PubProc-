@@ -9,7 +9,7 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.support.v7.widget.AppCompatImageView;
 import android.widget.TextView;
 
 import dpa_me.com.dpa_pubproc.CustomViews.StrokeTextView;
@@ -145,7 +145,7 @@ public class ConfirmDialog extends Dialog {
 
         PubProc.HandleViewAndFontSize.overrideFonts(getContext(), findViewById(R.id.MainLayout));
 
-        ImageView logo = findViewById(R.id.Logo);
+        AppCompatImageView logo = findViewById(R.id.Logo);
         if (logo != null)
             PubProc.HandleImagesAndAnimations.JumpInAnimation(logo, 300, 0);
 
